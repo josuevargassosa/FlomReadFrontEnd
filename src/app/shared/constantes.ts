@@ -9,20 +9,27 @@ export const modulos: FuseNavigationItem[] = [
         title: 'Dashboard',
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
-        link : '/example'
+        link : '/dashboard'
     },
     {
         id   : 'libros',
         title: 'Libros',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example1'
+        icon : 'heroicons_outline:book-open',
+        link : '/libros'
+    },
+    {
+        id   : 'alumnos',
+        title: 'Alumnos',
+        type : 'basic',
+        icon : 'heroicons_outline:users',
+        link : '/alumnos'
     },
     {
         id   : 'resumenes',
         title: 'Resumenes',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example2'
+        icon : 'heroicons_outline:pencil-alt',
+        link : '/resumenes'
     },
 ];

@@ -3,6 +3,11 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { ExampleComponent } from './modules/admin/example/example.component';
+import { PanelComponent } from './pages/panel/panel.component';
+import { ResumenComponent } from './pages/resumenes/resumen.component';
+import { LibroComponent } from './pages/libros/libro.component';
+import { AlumnoComponent } from './pages/alumnos/alumno.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -10,14 +15,14 @@ import { InitialDataResolver } from 'app/app.resolvers';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'example'},
+    {path: '', pathMatch : 'full', redirectTo: 'dashboard'},
 
     // Redirect signed in user to the '/example'
     //
     // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
-    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
+    {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'dashboard'},
 
     // Auth routes for guests
     {
@@ -74,7 +79,25 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children   : [
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
+            {
+                path     : 'dashboard',
+                component: PanelComponent
+            },
+            {
+                path     : 'libros',
+                component: LibroComponent
+            },
+            {
+                path     : 'resumenes',
+                component: ResumenComponent
+            },
+            {
+                path     : 'alumnos',
+                component: AlumnoComponent
+            },
+            // {
+            //     path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)
+            // },
         ]
     }
 ];

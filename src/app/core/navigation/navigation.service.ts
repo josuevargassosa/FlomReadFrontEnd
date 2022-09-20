@@ -43,5 +43,6 @@ export class NavigationService
                 this._navigation.next(navigation);
             })
         );
+        
     }
 }

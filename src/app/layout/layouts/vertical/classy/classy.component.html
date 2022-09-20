@@ -3,7 +3,8 @@
 
 <!-- Navigation -->
 <fuse-vertical-navigation
-    class="dark bg-gray-900 print:hidden"
+    class="print:hidden"
+    style="background-color: #E85D36; color: white;"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
     [navigation]="navigation.default"
@@ -14,7 +15,7 @@
             <!-- Logo -->
             <div class="flex items-center justify-center">
                 <img
-                    class="w-30"
+                    class="w-33"
                     src="../../../../../assets/images/logo.png">
             </div>
             <!-- Components -->
@@ -24,7 +25,7 @@
             </div>
         </div>
         <!-- User -->
-        <div class="flex flex-col items-center w-full p-4">
+        <!-- <div class="flex flex-col items-center w-full p-4">
             <div class="relative w-24 h-24">
                 <img
                     class="w-full h-full rounded-full"
@@ -44,16 +45,16 @@
                     {{user.email}}
                 </div>
             </div>
-        </div>
+        </div> -->
     </ng-container>
     <!-- Navigation footer hook -->
-    <ng-container fuseVerticalNavigationContentFooter>
+    <!-- <ng-container fuseVerticalNavigationContentFooter>
         <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
             <img
                 class="max-w-36"
                 src="assets/images/logo/logo-text-on-dark.svg">
         </div>
-    </ng-container>
+    </ng-container> -->
 </fuse-vertical-navigation>
 
 <!-- Wrapper -->
