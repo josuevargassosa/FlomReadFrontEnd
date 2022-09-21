@@ -9,7 +9,7 @@
           </mat-form-field> -->
       </div>
       <div class="col-lg-6 col-md-6 col-xs-12">
-        <button type="button" label="Agregar estudiante" style="float: right;" (click)="agregarProducto()" pButton
+        <button type="button" label="Agregar estudiante" style="float: right;" (click)="agregarEstudiante()" pButton
           color="primary">
         </button>
       </div>
@@ -20,10 +20,10 @@
     <p-table class="w-full" [value]="estudiantes" responsiveLayout="scroll">
       <ng-template pTemplate="header">
         <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Grado</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>

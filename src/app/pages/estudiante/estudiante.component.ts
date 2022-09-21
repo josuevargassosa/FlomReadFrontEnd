@@ -27,7 +27,7 @@ export class EstudianteComponent implements OnInit {
     })
   }
 
-  agregarProducto() {
+  agregarEstudiante() {
     
   }
 

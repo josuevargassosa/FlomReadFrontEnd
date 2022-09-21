@@ -20,8 +20,14 @@ export class EstudianteService {
     private http: HttpClient,
   ) { }
 
-  getEstudiantes(): Observable<Estudiante> {
+  getEstudiantes(): Observable<Estudiante[]> {
     return this.http.get(`${this.apiUrl}/estudiante`).pipe(map((response: any) =>
+      response as Estudiante[]
+    ));
+  }
+
+  getEstudiantesById(idEstudiante): Observable<Estudiante> {
+    return this.http.get(`${this.apiUrl}/estudiante/${idEstudiante}`).pipe(map((response: any) =>
       response as Estudiante
     ));
   }
