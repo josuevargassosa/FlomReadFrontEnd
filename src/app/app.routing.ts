@@ -3,11 +3,10 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
-import { ExampleComponent } from './modules/admin/example/example.component';
-import { PanelComponent } from './pages/panel/panel.component';
 import { ResumenComponent } from './pages/resumenes/resumen.component';
 import { LibroComponent } from './pages/libros/libro.component';
-import { AlumnoComponent } from './pages/alumnos/alumno.component';
+import { EstadisticaComponent } from './pages/estadistica/estadistica.component';
+import { EstudianteComponent } from './pages/estudiante/estudiante.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -81,7 +80,7 @@ export const appRoutes: Route[] = [
         children   : [
             {
                 path     : 'dashboard',
-                component: PanelComponent
+                component: EstadisticaComponent
             },
             {
                 path     : 'libros',
@@ -93,7 +92,7 @@ export const appRoutes: Route[] = [
             },
             {
                 path     : 'alumnos',
-                component: AlumnoComponent
+                component: EstudianteComponent
             },
             // {
             //     path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)

@@ -1,0 +1,28 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
+import { map, Observable } from 'rxjs';
+import { Estudiante } from '../model/estudiante.model';
+
+const httpHeaders = {
+  'Content-Type': 'application/json',
+  // 'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EstudianteService {
+
+  apiUrl = environment.serviceUrl;
+  
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  getEstudiantes(): Observable<Estudiante> {
+    return this.http.get(`${this.apiUrl}/estudiante`).pipe(map((response: any) =>
+      response as Estudiante
+    ));
+  }
+}
