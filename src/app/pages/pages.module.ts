@@ -34,6 +34,12 @@ import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { OrderListModule } from 'primeng/orderlist';
 import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { CrearEstudianteComponent } from './estudiante/components/crear-estudiante/crear-estudiante.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import {KeyFilterModule} from 'primeng/keyfilter';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +47,8 @@ import { TableModule } from 'primeng/table';
     LibroComponent,
     EstudianteComponent,
     EstadisticaComponent,
-    EstadisticasBasicasComponent
+    EstadisticasBasicasComponent,
+    CrearEstudianteComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +57,8 @@ import { TableModule } from 'primeng/table';
     // AdminModule,
     // DashboardModule,
     // MenuModule,
+
+    ReactiveFormsModule,
 
     //Fuse Modules
     FuseCardModule,
@@ -68,7 +77,10 @@ import { TableModule } from 'primeng/table';
     RatingModule,
     DialogModule,
     OrderListModule,
-    TableModule
+    TableModule,
+    InputTextModule,
+    InputMaskModule,
+    KeyFilterModule
   ],
   providers: [
     // ComponentesService,
@@ -92,7 +104,10 @@ import { TableModule } from 'primeng/table';
     RatingModule,
     DialogModule,
     OrderListModule,
-    TableModule
+    TableModule,
+    InputTextModule,
+    InputMaskModule,
+    KeyFilterModule
   ]
 })
 export class PagesModule { }

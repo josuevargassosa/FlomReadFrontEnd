@@ -1,13 +1,6 @@
-<div class="w-full m-5">
+<div class="w-full mt-5 mr-10 ml-10">
   <div class="flex justify-between ... mb-5">
     <div class="row" style="width: 100%;">
-      <div class="col-xl-col-lg-6 col-md-6 col-xs-12">
-        <!-- <mat-form-field appearance="outline">
-            <mat-label>Buscar producto...</mat-label>
-            <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar..">
-            <mat-icon matSuffix>search</mat-icon>
-          </mat-form-field> -->
-      </div>
       <div class="col-lg-6 col-md-6 col-xs-12">
         <button type="button" label="Agregar estudiante" style="float: right;" (click)="agregarEstudiante()" pButton
           color="primary">
@@ -17,96 +10,35 @@
   </div>
 
   <div class="table-responsive">
-    <p-table class="w-full" [value]="estudiantes" responsiveLayout="scroll">
+    <p-table #dt1 dataKey="id" class="w-full" [value]="estudiantes" responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    responsiveLayout="scroll" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [globalFilterFields]="['nombres','apellidos','correo','grado']">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex">
+        <span class="p-input-icon-left p-ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Buscar..." />
+              </span>
+      </div>
+  </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Correo</th>
-          <th>Grado</th>
+          <th pSortableColumn="nombres">Nombre <p-sortIcon field="nombres"></p-sortIcon></th>
+          <th pSortableColumn="apellidos">Apellido <p-sortIcon field="apellidos"></p-sortIcon></th>
+          <th pSortableColumn="correo">Correo <p-sortIcon field="correo"></p-sortIcon></th>
+          <th pSortableColumn="grado">Grado <p-sortIcon field="grado"></p-sortIcon></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-product>
+      <ng-template pTemplate="body" let-estudiante>
         <tr>
-          <td>{{product.code}}</td>
-          <td>{{product.name}}</td>
-          <td>{{product.category}}</td>
-          <td>{{product.quantity}}</td>
+          <td>{{estudiante.nombres}}</td>
+          <td>{{estudiante.apellidos}}</td>
+          <td>{{estudiante.correo}}</td>
+          <td>{{estudiante.grado}}</td>
         </tr>
       </ng-template>
     </p-table>
-    <!-- <table [dataSource]="dataFondoSource" class="w-full" mat-table matSort>
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>#</mat-header-cell>
-          <mat-cell *matCellDef="let id; let i = index">{{
-            i + 1
-            }}</mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="nombre">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>NOMBRE</mat-header-cell>
-          <mat-cell *matCellDef="let nombre">{{
-            nombre.nombre
-            }}</mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="precio">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>PRECIO</mat-header-cell>
-          <mat-cell *matCellDef="let precio" style="color: rgb(0, 0, 0, 0.54)">${{ precio.precio | number: ".2-2" }}
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="categoria">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>CATEGORIA</mat-header-cell>
-          <mat-cell *matCellDef="let categoria" style="color: rgb(0, 0, 0, 0.54)">{{ categoria.nombreCategoria }}</mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="estado">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>ESTADO</mat-header-cell>
-          <mat-cell *matCellDef="let estado" style="color: rgb(0, 0, 0, 0.54)">
-            <div>
-              <label class="ms-switch" *ngIf="estado.idEstado == 2" matTooltip="Agotado">
-                <input type="checkbox" (click)="cambioEstado($event, estado.id)" />
-                <span style="background-color: rgb(153, 153, 153)" class="ms-switch-slider round">
-                </span>
-              </label>
-  
-              <label class="ms-switch" *ngIf="estado.idEstado == 1" matTooltip="Disponible">
-                <input type="checkbox" checked (click)="cambioEstado($event, estado.id)" />
-                <span style="background-color: rgb(44, 126, 39)" class="ms-switch-slider round"></span>
-              </label>
-            </div>
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="opciones">
-          <mat-header-cell *matHeaderCellDef mat-header-cell mat-sort-header>OPCIONES</mat-header-cell>
-          <mat-cell *matCellDef="let categoria" style="color: rgb(0, 0, 0, 0.54)">
-            <button style="background-color: white" type="button"
-              (click)="editarProducto(categoria.id)">
-              <mat-icon matTooltip="Editar" md-24 aria-hidden="false" style="
-                    color: rgba(65, 100, 165, 0.54);
-                    text-align: center;
-                    font-size: x-large;
-                    cursor: pointer;
-                  " aria-label="Example home icon">edit</mat-icon>
-            </button>
-            <mat-icon matTooltip="Eliminar" (click)="eliminarProducto(categoria.id)" md-24 aria-hidden="false" style="
-                  color: red;
-                  text-align: center;
-                  font-size: x-large;
-                  margin-left: 8%;
-                  cursor: pointer;
-                " aria-label="Example home icon">delete</mat-icon>
-          </mat-cell>
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-      </table> -->
-
-    <!-- <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
-      </mat-paginator> -->
   </div>
 </div>
+
+<app-crear-estudiante [modalCrearEstudiante]="modalCrearEstudiante" (modalCerrar)="modalCrearEstudiante = false"></app-crear-estudiante>

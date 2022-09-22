@@ -1,0 +1,37 @@
+<p-dialog header="Agregar estudiante" [(visible)]="modalCrearEstudiante" [modal]="true" [baseZIndex]="10000"
+    [resizable]="false" [draggable]="false" (onHide)="cerrar()">
+    <form [formGroup]="estudiante">
+        <div class="grid p-fluid gap-5">
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Nombres</span>
+                <input class="form-control" formControlName="nombres" type="text" pInputText [(ngModel)]="val1">
+            </div>
+    
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Apellidos</span>
+                <input type="text" pInputText [(ngModel)]="val2">
+            </div>
+    
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Edad</span>
+                <p-inputNumber [(ngModel)]="val3" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
+                </p-inputNumber>
+            </div>
+    
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Correo</span>
+                <input type="text" pInputText [(ngModel)]="val2">
+            </div>
+    
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Grado</span>
+                <p-inputMask [(ngModel)]="val5">
+                </p-inputMask>
+            </div>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" icon="pi pi-check" (click)="cerrar()" label="Cancelar" class="p-button-danger"></button>
+        <button pButton pRipple type="button" type="submit" icon="pi pi-times" (click)="crear()" label="Confirmar" class="p-button-success"></button>
+    </ng-template>
+</p-dialog>

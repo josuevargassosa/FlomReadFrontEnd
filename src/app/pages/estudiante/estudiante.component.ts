@@ -9,12 +9,8 @@ import { EstudianteService } from './service/estudiante.service';
 })
 export class EstudianteComponent implements OnInit {
 
-  // dataFondoSource = new MatTableDataSource();
-  // displayedColumns = ["id", "nombre", "precio", "categoria", "estado", "opciones"];
-  // subject2$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
-  // data$: Observable<any[]> = this.subject2$.asObservable();
-
   estudiantes: Estudiante[] = [];
+  modalCrearEstudiante: boolean = false;
 
   constructor(
     private estudianteService: EstudianteService
@@ -28,7 +24,6 @@ export class EstudianteComponent implements OnInit {
   }
 
   agregarEstudiante() {
-    
+    this.modalCrearEstudiante = true;
   }
-
 }
