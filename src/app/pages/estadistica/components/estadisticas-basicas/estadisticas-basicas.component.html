@@ -1,8 +1,5 @@
 <div class="mt-2">
-    <!-- <p-skeleton class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
-        *ngIf="skeletonEmpresa" width="140px" height="40px"></p-skeleton> -->
-    <h3 
-        class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+    <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
         Estadísticas
     </h3>
     <div class="leading-6 truncate text-secondary">Estadísticas de visitas al menú virtual</div>
@@ -10,105 +7,56 @@
 <br>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0">
     <!-- Libros -->
-    <!-- <p-skeleton class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="skeletonDia"
-        width="270px" height="220px"></p-skeleton> -->
-    <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
-        style="z-index: 1;">
+    <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden" style="z-index: 1;">
         <div class="flex items-start justify-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">Libros</div>
             <div class="ml-2 -mt-2 -mr-3">
             </div>
         </div>
         <div class="flex flex-col items-center mt-2">
-            <!-- <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-                {{formEstadisticasMenu.value.dia + formEstadisticasMenuQR.value.dia}}
-            </div> -->
-            <!-- <div [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" *ngIf="dataEmpresa.idPlan == 1" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-                <i class="pi pi-lock" style="font-size: 3rem"></i>
-            </div> -->
-            <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Visitas</div>
-
-            <!-- <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                <div class="text-md font-medium truncate">Qr:</div>
-                <div class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenuQR.value.dia}}</div>
-
-                <div style="margin-left: 7px;" class="text-md font-medium truncate">Link:</div>
-                <div class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenu.value.dia}}</div>
-            </div> -->
+            <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
+                100
+            </div>
+            <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Libros</div>
         </div>
     </div>
 
-    <!-- Semanal -->
-    <!-- <p-skeleton class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="skeletonSemana"
-        width="270px" height="220px"></p-skeleton> -->
+    <!-- Libros prestados -->
     <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
         <div class="flex items-start justify-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">Libros Prestados</div>
         </div>
         <div class="flex flex-col items-center mt-2">
-            <!-- <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
-                {{formEstadisticasMenu.value.semana + formEstadisticasMenuQR.value.semana}}            
-            </div> -->
-            <div class="text-lg font-medium text-red-600 dark:text-red-500">Visitas</div>
-            <!-- <div [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" *ngIf="dataEmpresa.idPlan == 1" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-                <i class="pi pi-lock" style="font-size: 3rem"></i>
-            </div> -->
-            <!-- <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                <div class="text-md font-medium truncate">Qr:</div>
-                <div class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenuQR.value.semana}}</div>
-
-                <div style="margin-left: 7px;" class="text-md font-medium truncate">Link:</div>
-                <div class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenu.value.semana}}</div>
-            </div> -->
-            
+            <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
+                20           
+            </div>
+            <div class="text-lg font-medium text-red-600 dark:text-red-500">Libros prestados</div>
         </div>
     </div>
-    <!-- Mensual -->
-    <!-- <p-skeleton class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="skeletonMes"
-        width="270px" height="220px"></p-skeleton> -->
+
+    <!-- Libros leidos -->
     <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
         <div class="flex items-start justify-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">Libros Leidos</div>
         </div>
         <div class="flex flex-col items-center mt-2">
-            <!-- <div  *ngIf="dataEmpresa.idPlan == 3" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">
-                {{formEstadisticasMenu.value.mes + formEstadisticasMenuQR.value.mes}}
+            <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">
+                38
             </div>
-            <div [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" *ngIf="dataEmpresa.idPlan == 1" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-                <i class="pi pi-lock" style="font-size: 3rem"></i>
-            </div>
-            <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Visitas</div>
-            <div  [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                <div class="text-md font-medium truncate">Qr:</div>
-                <div *ngIf="dataEmpresa.idPlan == 3" class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenuQR.value.mes}}</div>
-
-                <div style="margin-left: 7px;" class="text-md font-medium truncate">Link:</div>
-                <div *ngIf="dataEmpresa.idPlan == 3" class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenu.value.mes}}</div>
-            </div> -->
+            <div class="text-lg font-medium text-red-600 dark:text-red-500">Libros leidos</div>
         </div>
     </div>
-    <!-- Anual -->
-    <!-- <p-skeleton class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="skeletonAnio"
-        width="270px" height="220px"></p-skeleton> -->
+
+    <!-- Lectores -->
     <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
         <div class="flex items-start justify-between">
-            <div class="text-lg font-medium tracking-tight leading-6 truncate">Alumnos</div>
+            <div class="text-lg font-medium tracking-tight leading-6 truncate">Lectores</div>
         </div>
         <div class="flex flex-col items-center mt-2">
-            <!-- <div *ngIf="dataEmpresa.idPlan == 3" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">
-                {{formEstadisticasMenu.value.anio + formEstadisticasMenuQR.value.anio}}
+            <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">
+                25
             </div>
-            <div [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" *ngIf="dataEmpresa.idPlan == 1" class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
-                <i class="pi pi-lock" style="font-size: 3rem"></i>
-            </div>
-            <div class="text-lg font-medium text-green-600 dark:text-green-500">Visitas</div>
-            <div [ngClass]="{'ocultar': dataEmpresa.idPlan == 1}" class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                <div class="text-md font-medium truncate">Qr:</div>
-                <div *ngIf="dataEmpresa.idPlan == 3" class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenuQR.value.anio}}</div>
-
-                <div style="margin-left: 7px;" class="text-md font-medium truncate">Link:</div>
-                <div *ngIf="dataEmpresa.idPlan == 3" class="ml-1.5 text-lg font-semibold">{{formEstadisticasMenu.value.anio}}</div>
-            </div> -->
+            <div class="text-lg font-medium text-red-600 dark:text-red-500">Lectores</div>
         </div>
     </div>
 </div>

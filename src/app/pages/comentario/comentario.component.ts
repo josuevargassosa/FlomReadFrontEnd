@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Comentario } from './model/comentario.model';
+import { ComentarioService } from './service/comentario.service';
 
 @Component({
   selector: 'app-comentario',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComentarioComponent implements OnInit {
 
-  constructor() { }
+  modalShowComentario: boolean = false;
+  comentarios: Comentario[] = [];
+  comentario: Comentario;
+
+  constructor(
+    private ComentarioService: ComentarioService
+  ) { }
 
   ngOnInit(): void {
+    this.ComentarioService.getComentarios().subscribe((response: any) => {
+      this.comentarios = response;
+    })
+  }
+
+  modalComentario(lector?) {
+    this.comentario = lector;
+    this.modalShowComentario = true;
+  }
+
+  modalCerrar() {
+    this.modalShowComentario = false;
+    this.ngOnInit();
   }
 
 }

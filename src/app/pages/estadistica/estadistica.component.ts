@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstadisticaComponent implements OnInit {
 
+  libros;
+  librosPrestados;
+  librosLeidos;
+  lectores;
+  
+
   constructor() { }
 
   ngOnInit(): void {

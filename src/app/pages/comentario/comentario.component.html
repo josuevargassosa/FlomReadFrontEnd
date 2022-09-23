@@ -1,1 +1,39 @@
-<p>resumen works!</p>
+<div class="w-full mt-5 mr-10 ml-10">
+  
+    <div class="table-responsive">
+      <p-table #dt1 dataKey="id" responsiveLayout="scroll" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+      [globalFilterFields]="['nombres','apellidos','correo','grado']"
+      class="w-full" [value]="comentarios" responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true">
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+  
+          <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Buscar..." />
+                </span>
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="lector">Lector <p-sortIcon field="lector"></p-sortIcon></th>
+            <th pSortableColumn="libro">Libro <p-sortIcon field="libro"></p-sortIcon></th>
+            <th pSortableColumn="FechaCreacion">Fecha envio <p-sortIcon field="FechaCreacion"></p-sortIcon></th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-comentario>
+          <tr>
+            <!-- <td>{{comentario.lector}}</td>
+            <td>{{comentario.libro}}</td>
+            <td>{{comentario.FechaCreacion}}</td>
+            <td style="display: flex; justify-content: center;">
+              <button type="button" pButton icon="pi pi-pencil" class="p-button-text" (click)="modalComentario(comentario)"></button>
+            </td> -->
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  
+  <!-- <app-modal-lector [lector]="lector" [modalShowLector]="modalShowLector" (modalCerrar)="modalCerrar()"></app-modal-lector> -->
+  

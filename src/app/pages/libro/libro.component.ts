@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Libro } from './model/libro.model';
+import { LibroService } from './service/libro.service';
 
 @Component({
   selector: 'app-libro',
@@ -8,14 +9,27 @@ import { Libro } from './model/libro.model';
 })
 export class LibroComponent implements OnInit {
 
+  modalShowLibro: boolean = false;
   libros: Libro[] = [];
+  libro: Libro;
 
-  constructor() { }
+  constructor(
+    private libroService: LibroService
+  ) { }
 
   ngOnInit(): void {
+    this.libroService.getLibros().subscribe((response: any) => {
+      this.libros = response;
+    })
   }
 
-  agregarLibro() {
-    
+  modalLibro(lector?) {
+    this.libro = lector;
+    this.modalShowLibro = true;
+  }
+
+  modalCerrar() {
+    this.modalShowLibro = false;
+    this.ngOnInit();
   }
 }

@@ -16,7 +16,7 @@ export class ComentarioService {
     private http: HttpClient,
   ) { }
 
-  getResumenes(): Observable<Comentario[]> {
+  getComentarios(): Observable<Comentario[]> {
     return this.http.get(`${this.apiUrl}/resumenes`).pipe(map((response: any) =>
       response as Comentario[]
     ));

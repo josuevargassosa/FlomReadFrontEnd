@@ -18,7 +18,7 @@ export class LectorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.lectorService.getLector().subscribe((response: any) => {
+    this.lectorService.getLectores().subscribe((response: any) => {
       this.lectores = response;
     })
   }

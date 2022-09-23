@@ -20,7 +20,7 @@ export class LectorService {
     private http: HttpClient,
   ) { }
 
-  getLector(): Observable<Lector[]> {
+  getLectores(): Observable<Lector[]> {
     return this.http.get(`${this.apiUrl}/estudiante`).pipe(map((response: any) =>
       response as Lector[]
     ));
