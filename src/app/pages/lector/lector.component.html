@@ -2,7 +2,7 @@
   <div class="flex justify-between ... mb-5">
     <div class="row" style="width: 100%;">
       <div class="col-lg-6 col-md-6 col-xs-12">
-        <button type="button" label="Agregar estudiante" style="float: right;" (click)="modalEstudiante()" pButton
+        <button type="button" label="Agregar lector" style="float: right;" (click)="modalLector()" pButton
           color="primary">
         </button>
       </div>
@@ -10,11 +10,11 @@
   </div>
 
   <div class="table-responsive">
-    <p-table #dt1 dataKey="id" class="w-full" [value]="estudiantes" responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-    responsiveLayout="scroll" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    <p-table #dt1 dataKey="id"     responsiveLayout="scroll" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
     [globalFilterFields]="['nombres','apellidos','correo','grado']">
     <ng-template pTemplate="caption">
-      <div class="p-d-flex">
+      <div class="p-d-flex">class="w-full" [value]="lectores" responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+
         <span class="p-input-icon-left p-ml-auto">
                   <i class="pi pi-search"></i>
                   <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Buscar..." />
@@ -30,14 +30,14 @@
           <th>Acciones</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-estudiante>
+      <ng-template pTemplate="body" let-lector>
         <tr>
-          <td>{{estudiante.nombres}}</td>
-          <td>{{estudiante.apellidos}}</td>
-          <td>{{estudiante.correo}}</td>
-          <td>{{estudiante.grado}}</td>
+          <td>{{lector.nombres}}</td>
+          <td>{{lector.apellidos}}</td>
+          <td>{{lector.correo}}</td>
+          <td>{{lector.grado}}</td>
           <td style="display: flex; justify-content: center;">
-            <button type="button" pButton icon="pi pi-pencil" class="p-button-text" (click)="modalEstudiante(estudiante)"></button>
+            <button type="button" pButton icon="pi pi-pencil" class="p-button-text" (click)="modalLector(lector)"></button>
           </td>
         </tr>
       </ng-template>
@@ -45,4 +45,4 @@
   </div>
 </div>
 
-<app-crear-estudiante [estudiante]="estudiante" [modalCrearEstudiante]="modalCrearEstudiante" (modalCerrar)="modalCerrar()"></app-crear-estudiante>
+<app-modal-lector [lector]="lector" [modalShowLector]="modalShowLector" (modalCerrar)="modalCerrar()"></app-modal-lector>

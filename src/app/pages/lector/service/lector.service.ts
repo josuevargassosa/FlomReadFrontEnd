@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { map, Observable } from 'rxjs';
-import { Estudiante } from '../model/estudiante.model';
+import { Lector } from '../model/lector.model';
 
 const httpHeaders = {
   'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const httpHeaders = {
 @Injectable({
   providedIn: 'root'
 })
-export class EstudianteService {
+export class LectorService {
 
   apiUrl = environment.serviceUrl;
   
@@ -20,27 +20,27 @@ export class EstudianteService {
     private http: HttpClient,
   ) { }
 
-  getEstudiantes(): Observable<Estudiante[]> {
+  getLector(): Observable<Lector[]> {
     return this.http.get(`${this.apiUrl}/estudiante`).pipe(map((response: any) =>
-      response as Estudiante[]
+      response as Lector[]
     ));
   }
 
-  getEstudiantesById(idEstudiante): Observable<Estudiante> {
-    return this.http.get(`${this.apiUrl}/estudiante/${idEstudiante}`).pipe(map((response: any) =>
-      response as Estudiante
+  getLectorById(idLector): Observable<Lector> {
+    return this.http.get(`${this.apiUrl}/estudiante/${idLector}`).pipe(map((response: any) =>
+      response as Lector
     ));
   }
 
-  crearEstudiante(data: Estudiante): Observable<Estudiante> {
+  crearLector(data: Lector): Observable<Lector> {
     return this.http.post(`${this.apiUrl}/estudiante`, data).pipe(map((response: any) =>
-      response as Estudiante
+      response as Lector
     ));
   }
 
-  actualizarEstudiante(data: Estudiante, idEstudiante): Observable<Estudiante> {
-    return this.http.put(`${this.apiUrl}/estudiante/${idEstudiante}`, data).pipe(map((response: any) =>
-      response as Estudiante
+  actualizarLector(data: Lector, idLector): Observable<Lector> {
+    return this.http.put(`${this.apiUrl}/estudiante/${idLector}`, data).pipe(map((response: any) =>
+      response as Lector
     ));
   }
 }

@@ -1,7 +1,7 @@
 export type Estadistica = {
     id: number;
     idLibro: number;
-    idEstudiante: number;
+    idLector: number;
     descripcion: string;
     fechaCreacion: string;
     fechaModificacion: string;

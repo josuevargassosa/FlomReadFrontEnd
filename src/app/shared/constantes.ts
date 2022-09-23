@@ -19,22 +19,31 @@ export const modulos: FuseNavigationItem[] = [
         link : '/libros'
     },
     {
-        id   : 'alumnos',
-        title: 'Alumnos',
+        id   : 'lector',
+        title: 'Lector',
         type : 'basic',
         icon : 'heroicons_outline:users',
-        link : '/alumnos'
+        link : '/lectores'
     },
     {
-        id   : 'resumenes',
-        title: 'Resumenes',
+        id   : 'comentario',
+        title: 'Comentario',
         type : 'basic',
         icon : 'heroicons_outline:pencil-alt',
-        link : '/resumenes'
+        link : '/comentarios'
     },
 ];
 
 export const grados: string[] = [
+    'Universidad',
+    'Preparatoria',
+    'Secundaria',
+    'Primaria',
+    'Inicial'
+]
+
+
+export const Instituciones: string[] = [
     'Universidad',
     'Preparatoria',
     'Secundaria',

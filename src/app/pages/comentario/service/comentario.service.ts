@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { map, Observable } from 'rxjs';
-import { Resumen } from '../model/resumen.model';
+import { Comentario } from '../model/comentario.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResumenService {
+export class ComentarioService {
 
   apiUrl = environment.serviceUrl;
 
@@ -16,9 +16,9 @@ export class ResumenService {
     private http: HttpClient,
   ) { }
 
-  getResumenes(): Observable<Resumen[]> {
+  getResumenes(): Observable<Comentario[]> {
     return this.http.get(`${this.apiUrl}/resumenes`).pipe(map((response: any) =>
-      response as Resumen[]
+      response as Comentario[]
     ));
   }
 

@@ -27,8 +27,8 @@ export class LibroService {
     ));
   }
 
-  getLibrosByIdEstudiante(idEstudiante): Observable<Libro[]> {
-    return this.http.get(`${this.apiUrl}/libros/${idEstudiante}`).pipe(map((response: any) =>
+  getLibrosByIdLector(idLector): Observable<Libro[]> {
+    return this.http.get(`${this.apiUrl}/libros/${idLector}`).pipe(map((response: any) =>
       response as Libro[]
     ));
   }

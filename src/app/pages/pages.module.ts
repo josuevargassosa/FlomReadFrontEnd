@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
-import { ResumenComponent } from './resumenes/resumen.component';
-import { LibroComponent } from './libros/libro.component';
-import { EstudianteComponent } from './estudiante/estudiante.component';
+import { ComentarioComponent } from './comentario/comentario.component';
+import { LibroComponent } from './libro/libro.component';
+import { LectorComponent } from './lector/lector.component';
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { EstadisticasBasicasComponent } from './estadistica/components/estadisticas-basicas/estadisticas-basicas.component';
 // import { ComponentesService } from './services/componentes.service';
@@ -35,7 +35,7 @@ import { DialogModule } from 'primeng/dialog';
 import { OrderListModule } from 'primeng/orderlist';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
-import { CrearEstudianteComponent } from './estudiante/components/crear-estudiante/crear-estudiante.component';
+import { ModalLectorComponent } from './lector/components/modal-lector/modal-lector.component';
 import { InputMaskModule } from 'primeng/inputmask';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,12 +44,12 @@ import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    ResumenComponent,
+    ComentarioComponent,
     LibroComponent,
-    EstudianteComponent,
+    LectorComponent,
     EstadisticaComponent,
     EstadisticasBasicasComponent,
-    CrearEstudianteComponent
+    ModalLectorComponent
   ],
   imports: [
     CommonModule,

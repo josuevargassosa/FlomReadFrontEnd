@@ -1,6 +1,6 @@
-<p-dialog header="Agregar estudiante" [(visible)]="modalCrearEstudiante" [modal]="true" [baseZIndex]="10000"
+<p-dialog header="Agregar Lector" [(visible)]="modalShowLector" [modal]="true" [baseZIndex]="10000"
     [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="showModal()">
-    <form [formGroup]="estudianteForm">
+    <form [formGroup]="lectorForm">
         <div class="grid p-fluid gap-5">
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Nombres</span>
@@ -36,9 +36,6 @@
     <ng-template pTemplate="footer">
         <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
         <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
-        [disabled]="!estudianteForm.valid"></p-button>
-        <!-- <button pButton pRipple type="button" icon="pi pi-check" (click)="cerrar()" label="Cancelar" class="p-button-danger"></button>
-        <button pButton pRipple type="button" icon="pi pi-times" (click)="crear()" label="Confirmar" class="p-button-success"
-        [disabled]="!estudianteForm.valid" ></button> -->
+        [disabled]="!lectorForm.valid"></p-button>
     </ng-template>
 </p-dialog>
