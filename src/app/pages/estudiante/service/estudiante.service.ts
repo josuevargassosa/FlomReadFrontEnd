@@ -31,4 +31,16 @@ export class EstudianteService {
       response as Estudiante
     ));
   }
+
+  crearEstudiante(data: Estudiante): Observable<Estudiante> {
+    return this.http.post(`${this.apiUrl}/estudiante`, data).pipe(map((response: any) =>
+      response as Estudiante
+    ));
+  }
+
+  actualizarEstudiante(data: Estudiante, idEstudiante): Observable<Estudiante> {
+    return this.http.put(`${this.apiUrl}/estudiante/${idEstudiante}`, data).pipe(map((response: any) =>
+      response as Estudiante
+    ));
+  }
 }

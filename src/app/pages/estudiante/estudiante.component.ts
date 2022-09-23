@@ -9,8 +9,9 @@ import { EstudianteService } from './service/estudiante.service';
 })
 export class EstudianteComponent implements OnInit {
 
-  estudiantes: Estudiante[] = [];
   modalCrearEstudiante: boolean = false;
+  estudiantes: Estudiante[] = [];
+  estudiante: Estudiante;
 
   constructor(
     private estudianteService: EstudianteService
@@ -18,12 +19,17 @@ export class EstudianteComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudianteService.getEstudiantes().subscribe((response: any) => {
-      console.log(response);
       this.estudiantes = response;
     })
   }
 
-  agregarEstudiante() {
+  modalEstudiante(estudiante?) {
+    this.estudiante = estudiante;
     this.modalCrearEstudiante = true;
+  }
+
+  modalCerrar() {
+    this.modalCrearEstudiante = false;
+    this.ngOnInit();
   }
 }

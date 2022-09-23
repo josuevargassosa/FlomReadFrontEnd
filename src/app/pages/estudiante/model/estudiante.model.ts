@@ -1,12 +1,14 @@
 export type Estudiante = {
-    id: number;
+    id?: number;
     nombres: string;
     apellidos: string;
+    identificacion: string;
     edad: number;
     correo: string;
     grado: string;
     fotoPerfil: string;
     estado: string;
-    fechaCreacion: string;
-    fechaModificacion: string;
+    clave?: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }

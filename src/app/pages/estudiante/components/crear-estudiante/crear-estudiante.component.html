@@ -1,37 +1,44 @@
 <p-dialog header="Agregar estudiante" [(visible)]="modalCrearEstudiante" [modal]="true" [baseZIndex]="10000"
-    [resizable]="false" [draggable]="false" (onHide)="cerrar()">
-    <form [formGroup]="estudiante">
+    [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="showModal()">
+    <form [formGroup]="estudianteForm">
         <div class="grid p-fluid gap-5">
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Nombres</span>
-                <input class="form-control" formControlName="nombres" type="text" pInputText [(ngModel)]="val1">
+                <input formControlName="nombres" pKeyFilter="alpha" type="text" pInputText>
             </div>
     
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Apellidos</span>
-                <input type="text" pInputText [(ngModel)]="val2">
+                <input formControlName="apellidos" pKeyFilter="alpha" type="text" pInputText>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Identificacion</span>
+                <input formControlName="identificacion" pKeyFilter="int" type="text" pInputText>
             </div>
     
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Edad</span>
-                <p-inputNumber [(ngModel)]="val3" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
-                </p-inputNumber>
+                <input formControlName="edad" pKeyFilter="int" type="text" pInputText>
             </div>
     
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Correo</span>
-                <input type="text" pInputText [(ngModel)]="val2">
+                <input formControlName="correo" type="text" pInputText>
             </div>
     
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Grado</span>
-                <p-inputMask [(ngModel)]="val5">
-                </p-inputMask>
+                <p-dropdown [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
             </div>
         </div>
     </form>
     <ng-template pTemplate="footer">
-        <button pButton pRipple type="button" icon="pi pi-check" (click)="cerrar()" label="Cancelar" class="p-button-danger"></button>
-        <button pButton pRipple type="button" type="submit" icon="pi pi-times" (click)="crear()" label="Confirmar" class="p-button-success"></button>
+        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        [disabled]="!estudianteForm.valid"></p-button>
+        <!-- <button pButton pRipple type="button" icon="pi pi-check" (click)="cerrar()" label="Cancelar" class="p-button-danger"></button>
+        <button pButton pRipple type="button" icon="pi pi-times" (click)="crear()" label="Confirmar" class="p-button-success"
+        [disabled]="!estudianteForm.valid" ></button> -->
     </ng-template>
 </p-dialog>

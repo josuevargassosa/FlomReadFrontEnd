@@ -33,3 +33,11 @@ export const modulos: FuseNavigationItem[] = [
         link : '/resumenes'
     },
 ];
+
+export const grados: string[] = [
+    'Universidad',
+    'Preparatoria',
+    'Secundaria',
+    'Primaria',
+    'Inicial'
+]

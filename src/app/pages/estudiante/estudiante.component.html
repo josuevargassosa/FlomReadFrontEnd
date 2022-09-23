@@ -2,7 +2,7 @@
   <div class="flex justify-between ... mb-5">
     <div class="row" style="width: 100%;">
       <div class="col-lg-6 col-md-6 col-xs-12">
-        <button type="button" label="Agregar estudiante" style="float: right;" (click)="agregarEstudiante()" pButton
+        <button type="button" label="Agregar estudiante" style="float: right;" (click)="modalEstudiante()" pButton
           color="primary">
         </button>
       </div>
@@ -27,6 +27,7 @@
           <th pSortableColumn="apellidos">Apellido <p-sortIcon field="apellidos"></p-sortIcon></th>
           <th pSortableColumn="correo">Correo <p-sortIcon field="correo"></p-sortIcon></th>
           <th pSortableColumn="grado">Grado <p-sortIcon field="grado"></p-sortIcon></th>
+          <th>Acciones</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-estudiante>
@@ -35,10 +36,13 @@
           <td>{{estudiante.apellidos}}</td>
           <td>{{estudiante.correo}}</td>
           <td>{{estudiante.grado}}</td>
+          <td style="display: flex; justify-content: center;">
+            <button type="button" pButton icon="pi pi-pencil" class="p-button-text" (click)="modalEstudiante(estudiante)"></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
 
-<app-crear-estudiante [modalCrearEstudiante]="modalCrearEstudiante" (modalCerrar)="modalCrearEstudiante = false"></app-crear-estudiante>
+<app-crear-estudiante [estudiante]="estudiante" [modalCrearEstudiante]="modalCrearEstudiante" (modalCerrar)="modalCerrar()"></app-crear-estudiante>

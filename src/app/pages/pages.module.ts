@@ -37,8 +37,9 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { CrearEstudianteComponent } from './estudiante/components/crear-estudiante/crear-estudiante.component';
 import { InputMaskModule } from 'primeng/inputmask';
-import {KeyFilterModule} from 'primeng/keyfilter';
+import { KeyFilterModule } from 'primeng/keyfilter';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableModule,
     InputTextModule,
     InputMaskModule,
-    KeyFilterModule
+    KeyFilterModule,
+    DropdownModule
   ],
   providers: [
     // ComponentesService,
@@ -107,7 +109,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableModule,
     InputTextModule,
     InputMaskModule,
-    KeyFilterModule
+    KeyFilterModule,
+    DropdownModule
   ]
 })
 export class PagesModule { }
