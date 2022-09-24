@@ -21,25 +21,25 @@ export class LectorService {
   ) { }
 
   getLectores(): Observable<Lector[]> {
-    return this.http.get(`${this.apiUrl}/estudiante`).pipe(map((response: any) =>
+    return this.http.get(`${this.apiUrl}/lector`).pipe(map((response: any) =>
       response as Lector[]
     ));
   }
 
   getLectorById(idLector): Observable<Lector> {
-    return this.http.get(`${this.apiUrl}/estudiante/${idLector}`).pipe(map((response: any) =>
+    return this.http.get(`${this.apiUrl}/lector/${idLector}`).pipe(map((response: any) =>
       response as Lector
     ));
   }
 
   crearLector(data: Lector): Observable<Lector> {
-    return this.http.post(`${this.apiUrl}/estudiante`, data).pipe(map((response: any) =>
+    return this.http.post(`${this.apiUrl}/lector`, data).pipe(map((response: any) =>
       response as Lector
     ));
   }
 
   actualizarLector(data: Lector, idLector): Observable<Lector> {
-    return this.http.put(`${this.apiUrl}/estudiante/${idLector}`, data).pipe(map((response: any) =>
+    return this.http.put(`${this.apiUrl}/lector/${idLector}`, data).pipe(map((response: any) =>
       response as Lector
     ));
   }

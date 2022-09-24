@@ -1,0 +1,22 @@
+<p-dialog header="Agregar Lector" [(visible)]="modalShowLibro" [modal]="true" [baseZIndex]="10000"
+    [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="showModal()">
+    <form [formGroup]="libroForm">
+        <div class="grid p-fluid gap-5">
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Nombre</span>
+                <input formControlName="nombre" type="text" pInputText>
+            </div>
+    
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Autor</span>
+                <input formControlName="autor" type="text" pInputText>
+            </div>
+
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        [disabled]="!libroForm.valid"></p-button>
+    </ng-template>
+</p-dialog>

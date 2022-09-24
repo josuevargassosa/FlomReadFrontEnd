@@ -16,20 +16,32 @@ export class LibroService {
   ) { }
 
   getLibros(): Observable<Libro[]> {
-    return this.http.get(`${this.apiUrl}/libros`).pipe(map((response: any) =>
+    return this.http.get(`${this.apiUrl}/libro`).pipe(map((response: any) =>
       response as Libro[]
     ));
   }
 
   getLibroById(idLibro): Observable<Libro> {
-    return this.http.get(`${this.apiUrl}/libros/${idLibro}`).pipe(map((response: any) =>
+    return this.http.get(`${this.apiUrl}/libro/${idLibro}`).pipe(map((response: any) =>
       response as Libro
     ));
   }
 
-  getLibrosByIdLector(idLector): Observable<Libro[]> {
-    return this.http.get(`${this.apiUrl}/libros/${idLector}`).pipe(map((response: any) =>
+  getLibrosByIdLibro(idLibro): Observable<Libro[]> {
+    return this.http.get(`${this.apiUrl}/libro/${idLibro}`).pipe(map((response: any) =>
       response as Libro[]
+    ));
+  }
+
+  crearLibro(data: Libro): Observable<Libro> {
+    return this.http.post(`${this.apiUrl}/libro`, data).pipe(map((response: any) =>
+      response as Libro
+    ));
+  }
+
+  actualizarLibro(data: Libro, idLibro): Observable<Libro> {
+    return this.http.put(`${this.apiUrl}/libro/${idLibro}`, data).pipe(map((response: any) =>
+      response as Libro
     ));
   }
 }

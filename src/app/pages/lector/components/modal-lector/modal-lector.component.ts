@@ -56,6 +56,7 @@ export class ModalLectorComponent implements OnInit {
 
   crear() {
     this.lectorForm.controls['clave'].setValue(this.lectorForm.controls['identificacion'].value);
+
     if (this.lector) {
       //Editar
       this.lectorService.actualizarLector(this.lectorForm.value as Lector, this.lector.id).subscribe((response: any) => {
@@ -64,6 +65,7 @@ export class ModalLectorComponent implements OnInit {
       });
     } else {
       //Crear
+      this.lectorForm.controls['estado'].setValue('A');
       this.lectorService.crearLector(this.lectorForm.value as Lector).subscribe((response: any) => {
         console.log(response);
         this.modalCerrar.emit(false);

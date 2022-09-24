@@ -40,6 +40,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { ModalLibroComponent } from './libro/components/modal-libro/modal-libro.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { DropdownModule } from 'primeng/dropdown';
     LectorComponent,
     EstadisticaComponent,
     EstadisticasBasicasComponent,
-    ModalLectorComponent
+    ModalLectorComponent,
+    ModalLibroComponent
   ],
   imports: [
     CommonModule,
