@@ -1,3 +1,28 @@
 <button type="button" label="Prestar Libro" style="float: left;" pButton
-color="primary">
+color="primary" (click)="modalPrestamo()">
 </button>
+
+<p-dialog header="Agregar Lector" [(visible)]="modalShowPrestamo" [modal]="true" [baseZIndex]="10000"
+    [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="cargarDatos()">
+    <form [formGroup]="libroForm">
+        <div class="flex p-fluid gap-5">
+            <div class="col-6 md:col-6 lg:col-4">
+                <span>Lector</span>
+                <p-dropdown appendTo="body" [options]="lectores" optionLabel="nombres" formControlName="lector" placeholder="Seleccionar un lector" [showClear]="true"
+                [filter]="true" filterBy="nombres"></p-dropdown>
+            </div>
+    
+            <div class="col-6 md:col-6 lg:col-4">
+                <span>Libro</span>
+                <p-dropdown appendTo="body" [options]="libros" optionLabel="nombre" formControlName="libro" placeholder="Seleccionar un libro" [showClear]="true"
+                [filter]="true" filterBy="nombre"></p-dropdown>
+            </div>
+
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        [disabled]="!libroForm.valid"></p-button>
+    </ng-template>
+</p-dialog>

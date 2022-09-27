@@ -1,16 +1,10 @@
-<div class="w-full mt-5 mr-10 ml-10">
-  <div class="flex justify-between ... mb-5">
-    <div class="row" style="width: 100%;">
-      <div class="col-lg-6 col-md-6 col-xs-12">
-        <app-prestamo-libro></app-prestamo-libro>
-        <button type="button" label="Agregar libro" style="float: right;" (click)="modalLibro()" pButton
-          color="primary">
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="table-responsive">
+<div class="mt-2">
+    <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+        Tabla de monitoreo
+    </h3>
+    <div class="leading-6 truncate text-secondary">Estadísticas de visitas al menú virtual</div>
+</div>
+<div class="table-responsive">
     <p-table #dt1 dataKey="id" responsiveLayout="scroll"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [globalFilterFields]="['nombres','apellidos','correo','grado']" class="w-full" [value]="libros"
@@ -26,9 +20,13 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon>
+          <th pSortableColumn="nombre">Lector <p-sortIcon field="nombre"></p-sortIcon>
           </th>
-          <th pSortableColumn="autor">Autor <p-sortIcon field="autor"></p-sortIcon>
+          <th pSortableColumn="autor">Libro <p-sortIcon field="autor"></p-sortIcon>
+          </th>
+          <th pSortableColumn="estado">Fecha prestamo <p-sortIcon field="estado"></p-sortIcon>
+          </th>
+          <th pSortableColumn="estado">Tiempo transcurrido <p-sortIcon field="estado"></p-sortIcon>
           </th>
           <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon>
           </th>
@@ -37,17 +35,15 @@
       </ng-template>
       <ng-template pTemplate="body" let-libro>
         <tr>
+          <td></td>
           <td>{{libro.nombre}}</td>
-          <td>{{libro.autor}}</td>
+          <td></td>
+          <td>16 horas</td>
           <td>{{libro.estado}}</td>
           <td style="display: flex; justify-content: start;">
-            <button type="button" pButton icon="pi pi-pencil" class="p-button-text"
-              (click)="modalLibro(libro)"></button>
+            <button type="button" pButton icon="pi pi-pencil" class="p-button-text"></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
-</div>
-
-<app-modal-libro [libro]="libro" [modalShowLibro]="modalShowLibro" (modalCerrar)="modalCerrar()"></app-modal-libro>

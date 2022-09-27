@@ -3,6 +3,10 @@
     <form [formGroup]="lectorForm">
         <div class="grid p-fluid gap-5">
             <div class="col-12 md:col-6 lg:col-4">
+                <span>Grado</span>
+                <p-dropdown appendTo="body" [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4">
                 <span>Nombres</span>
                 <input formControlName="nombres" pKeyFilter="alpha" type="text" pInputText>
             </div>
@@ -25,11 +29,6 @@
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Correo</span>
                 <input formControlName="correo" type="text" pInputText>
-            </div>
-    
-            <div class="col-12 md:col-6 lg:col-4">
-                <span>Grado</span>
-                <p-dropdown [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
             </div>
         </div>
     </form>

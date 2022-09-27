@@ -41,6 +41,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ModalLibroComponent } from './libro/components/modal-libro/modal-libro.component';
+import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitoreo/tabla-monitoreo.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ModalLibroComponent } from './libro/components/modal-libro/modal-libro.
     EstadisticaComponent,
     EstadisticasBasicasComponent,
     ModalLectorComponent,
-    ModalLibroComponent
+    ModalLibroComponent,
+    TablaMonitoreoComponent
   ],
   imports: [
     CommonModule,
