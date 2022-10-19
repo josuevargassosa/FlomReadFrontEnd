@@ -13,6 +13,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { PagesModule } from './pages/pages.module';
+import { HttpClientModule, HttpClient } from '@angular/common/http'; 
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -25,6 +26,7 @@ const routerConfig: ExtraOptions = {
     ],
     imports     : [
         BrowserModule,
+        HttpClientModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
 
@@ -47,7 +49,8 @@ const routerConfig: ExtraOptions = {
     ],
     bootstrap   : [
         AppComponent
-    ]
+    ],
+    providers: [HttpClient]
 })
 export class AppModule
 {

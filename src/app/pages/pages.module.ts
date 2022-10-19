@@ -57,6 +57,7 @@ import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitore
   ],
   imports: [
     CommonModule,
+    SharedModule,
     // RouterModule,
     // PagesRoutingModule,
     // AdminModule,

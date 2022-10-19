@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardService } from '../services/dashboard.service';
+import { EstadisticaService } from '../../service/estadistica.service';
+import { HttpClient } from '@angular/common/http';
 
 import { EstadisticasBasicasComponent } from './estadisticas-basicas.component';
 
@@ -10,17 +11,17 @@ describe('EstadisticasBasicasComponent', () => {
 
   beforeEach(() => TestBed.configureTestingModule({
     imports: [HttpClientTestingModule], 
-    providers: [DashboardService]
+    providers: [EstadisticaService]
   }));
 
 
   it('should be created', () => {
-    const service: DashboardService = TestBed.get(DashboardService);
+    const service: EstadisticaService = TestBed.get(EstadisticaService);
     expect(service).toBeTruthy();
    });
 
    it('should have getData function', () => {
-    const service: DashboardService = TestBed.get(DashboardService);
-    expect(service.getCalificacionesLocal).toBeTruthy();
+    const service: EstadisticaService = TestBed.get(EstadisticaService);
+    expect(service.getEstadisticas).toBeTruthy();
    });
 });

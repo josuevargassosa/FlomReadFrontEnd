@@ -4,11 +4,6 @@ import { environment } from 'environments/environment';
 import { map, Observable } from 'rxjs';
 import { Lector } from '../model/lector.model';
 
-const httpHeaders = {
-  'Content-Type': 'application/json',
-  // 'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-}
-
 @Injectable({
   providedIn: 'root'
 })

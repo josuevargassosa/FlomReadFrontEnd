@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClient } from '@angular/common/http';
 import { PrestamoLibroComponent } from './prestamo-libro.component';
 
 describe('PrestamoLibroComponent', () => {

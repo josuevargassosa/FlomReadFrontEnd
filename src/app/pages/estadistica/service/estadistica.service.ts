@@ -21,4 +21,29 @@ export class EstadisticaService {
       response as Estadistica[]
     ));
   }
+
+  getCantLibros(): Observable<number> {
+    return this.http.get(`${this.apiUrl}/libro/Count`).pipe(map((response: any) =>
+      response as number
+    ));
+  }
+
+  getCantLibrosPrestados(): Observable<number> {
+    return this.http.get(`${this.apiUrl}/LibroLector/Cantidad/Prestados`).pipe(map((response: any) =>
+      response as number
+    ));
+  }
+
+  getCantLibrosLeidos(): Observable<number> {
+    return this.http.get(`${this.apiUrl}/LibroLector/Cantidad/Leidos`).pipe(map((response: any) =>
+      response as number
+    ));
+  }
+
+  getCantLectores(): Observable<number> {
+    return this.http.get(`${this.apiUrl}/lector/Count`).pipe(map((response: any) =>
+      response as number
+    ));
+  }
+  
 }

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClient } from '@angular/common/http';
 import { ComentarioComponent } from './comentario.component';
 
-describe('ResumenComponent', () => {
+describe('ComentarioComponent', () => {
   let component: ComentarioComponent;
   let fixture: ComponentFixture<ComentarioComponent>;
 

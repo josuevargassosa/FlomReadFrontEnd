@@ -7,7 +7,7 @@
 <div class="table-responsive">
     <p-table #dt1 dataKey="id" responsiveLayout="scroll"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      [globalFilterFields]="['nombres','apellidos','correo','grado']" class="w-full" [value]="libros"
+      [globalFilterFields]="['nombres','apellidos','correo','grado']" class="w-full" [value]="prestamos"
       responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true">
       <ng-template pTemplate="caption">
         <div class="p-d-flex">
@@ -33,13 +33,13 @@
           <th>Acciones</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-libro>
+      <ng-template pTemplate="body" let-prestamo>
         <tr>
-          <td></td>
-          <td>{{libro.nombre}}</td>
-          <td></td>
+          <td>{{prestamo.lector.nombres}}</td>
+          <td>{{prestamo.libro.nombre}}</td>
+          <td>{{prestamo.fechaCreacion}}</td>
           <td>16 horas</td>
-          <td>{{libro.estado}}</td>
+          <td>{{prestamo.estado}}</td>
           <td style="display: flex; justify-content: start;">
             <button type="button" pButton icon="pi pi-pencil" class="p-button-text"></button>
           </td>

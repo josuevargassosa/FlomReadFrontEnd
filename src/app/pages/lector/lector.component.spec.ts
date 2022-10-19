@@ -1,6 +1,9 @@
+import 'zone.js';
+import 'zone.js/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LectorComponent } from './lector.component';
+import { PagesModule } from '../pages.module';
 
 describe('LectorComponent', () => {
   let component: LectorComponent;
@@ -8,7 +11,7 @@ describe('LectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LectorComponent ]
+      declarations: [ PagesModule ]
     })
     .compileComponents();
 

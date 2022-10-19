@@ -27,6 +27,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { DropdownModule } from 'primeng/dropdown';
+import { SharedService } from './services/shared.service';
 
 @NgModule({
     imports: [
@@ -89,6 +90,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ],
     entryComponents: [
         PrestamoLibroComponent
+    ],
+    providers: [
+        SharedService
     ]
 
 })
