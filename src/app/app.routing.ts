@@ -14,7 +14,7 @@ import { LectorComponent } from './pages/lector/lector.component';
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    {path: '', pathMatch : 'full', redirectTo: 'sign-in'},
+    {path: '', pathMatch : 'full', redirectTo: 'dashboard'},
 
     // Redirect signed in user to the '/example'
     //

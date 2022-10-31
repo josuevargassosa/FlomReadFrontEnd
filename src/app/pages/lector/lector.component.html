@@ -2,8 +2,8 @@
   <div class="flex justify-between ... mb-5">
     <div class="row" style="width: 100%;">
       <div class="col-lg-12 col-md-12 col-xs-12">
-        <app-prestamo-libro></app-prestamo-libro>
-        <button type="button" label="Agregar lector" style="float: right;" (click)="modalLector()" pButton
+        <!-- <app-prestamo-libro></app-prestamo-libro> -->
+        <button type="button" label="Agregar lector" style="float: left;" (click)="modalLector()" pButton
           color="primary">
         </button>
       </div>
@@ -28,7 +28,8 @@
           <th pSortableColumn="nombres">Nombre <p-sortIcon field="nombres"></p-sortIcon></th>
           <th pSortableColumn="apellidos">Apellido <p-sortIcon field="apellidos"></p-sortIcon></th>
           <th pSortableColumn="correo">Correo <p-sortIcon field="correo"></p-sortIcon></th>
-          <th pSortableColumn="grado">Grado <p-sortIcon field="grado"></p-sortIcon></th>
+          <th pSortableColumn="grado">Nivel <p-sortIcon field="grado"></p-sortIcon></th>
+          <th pSortableColumn="grado">Institucion <p-sortIcon field="grado"></p-sortIcon></th>
           <th>Acciones</th>
         </tr>
       </ng-template>
@@ -38,6 +39,7 @@
           <td>{{lector.apellidos}}</td>
           <td>{{lector.correo}}</td>
           <td>{{lector.grado}}</td>
+          <td>{{lector.institucion}}</td>
           <td style="display: flex; justify-content: start;">
             <button type="button" pButton icon="pi pi-pencil" class="p-button-text" (click)="modalLector(lector)"></button>
           </td>

@@ -58,6 +58,7 @@ export class PrestamoLibroComponent implements OnInit {
     }
     this.sharedService.postPrestamo(data).subscribe((response: any) => {
       console.log(response);
+      this.cerrar();
     });
   }
 

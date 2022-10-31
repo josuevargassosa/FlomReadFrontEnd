@@ -2,8 +2,8 @@
   <div class="flex justify-between ... mb-5">
     <div class="row" style="width: 100%;">
       <div class="col-lg-12 col-md-12 col-xs-12">
-        <app-prestamo-libro></app-prestamo-libro>
-        <button type="button" label="Agregar libro" style="float: right;" (click)="modalLibro()" pButton
+        <!-- <app-prestamo-libro></app-prestamo-libro> -->
+        <button type="button" label="Agregar libro" style="float: left;" (click)="modalLibro()" pButton
           color="primary">
         </button>
       </div>
@@ -39,7 +39,8 @@
         <tr>
           <td>{{libro.nombre}}</td>
           <td>{{libro.autor}}</td>
-          <td>{{libro.estado}}</td>
+          <td *ngIf="libro.estado == 'A'" style="color: green;">Disponible</td>
+          <td *ngIf="libro.estado == 'P'" style="color: orange;">Prestado</td>
           <td style="display: flex; justify-content: start;">
             <button type="button" pButton icon="pi pi-pencil" class="p-button-text"
               (click)="modalLibro(libro)"></button>

@@ -1,10 +1,98 @@
-<div class="mt-2">
+<div class="mt-2 mb-4">
+  <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+      Estadística especificas
+  </h3>
+  <div class="leading-6 truncate text-secondary">Estadísticas de datos especificos</div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full min-w-0">
+
+  <!-- Top 5 libros -->
+  <div class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+      <div class="flex flex-col sm:fleimport {ChartModule} from 'primeng/chart';x-row items-start justify-between">
+          <div class="text-lg font-medium tracking-tight leading-6 truncate">Top 5 libros</div>
+          <!-- <div class="mt-3 sm:mt-0 sm:ml-2">
+              <mat-button-toggle-group
+                  value="this-week"
+                  #taskDistributionWeekSelector="matButtonToggleGroup">
+                  <mat-button-toggle value="last-week">Last Week</mat-button-toggle>
+                  <mat-button-toggle value="this-week">This Week</mat-button-toggle>
+              </mat-button-toggle-group>
+          </div> -->
+      </div>
+      <div class="flex flex-col flex-auto mt-8" style="padding: 5%;">
+          <p-chart type="pie" [data]="dataGraficoLibros" [style]="{'width': '100%'}"></p-chart>
+          <!-- <p class="text-4xl sm:text-3xl font-bold tracking-tight leading-none" style="margin: auto; color: gray;">
+              Sin visitas
+          </p> -->
+      </div>
+  </div>
+  <!-- Top 5 Instituciones -->
+  <div class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+      <div class="flex flex-col sm:fleimport {ChartModule} from 'primeng/chart';x-row items-start justify-between">
+          <div class="text-lg font-medium tracking-tight leading-6 truncate">Top 5 instituciones</div>
+          <!-- <div class="mt-3 sm:mt-0 sm:ml-2">
+              <mat-button-toggle-group
+                  value="this-week"
+                  #taskDistributionWeekSelector="matButtonToggleGroup">
+                  <mat-button-toggle value="last-week">Last Week</mat-button-toggle>
+                  <mat-button-toggle value="this-week">This Week</mat-button-toggle>
+              </mat-button-toggle-group>
+          </div> -->
+      </div>
+      <div class="flex flex-col flex-auto mt-8" style="padding: 5%; justify-content: center;">
+          <p-chart type="bar" [data]="dataBarrasInstituciones"></p-chart>
+          <!-- <p *ngIf="dataEmpresa.idPlan == 3 && categoriasEstadisticas.length == 0" class="text-4xl sm:text-3xl font-bold tracking-tight leading-none" style="margin: auto; color: gray;">
+              Sin visitas
+          </p> -->
+      </div>
+  </div>
+
+  <!-- Top 5 Lectores -->
+  <div class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+      <div class="flex flex-col sm:flex-row items-start justify-between">
+          <div class="text-lg font-medium tracking-tight leading-6 truncate">Top 5 lectores</div>
+          <div class="mt-3 sm:mt-0 sm:ml-2">
+              <!-- <mat-button-toggle-group
+                  value="today"
+                  #scheduleDaySelector="matButtonToggleGroup">
+                  <mat-button-toggle value="today">Hoy</mat-button-toggle>
+              </mat-button-toggle-group> -->
+          </div>
+      </div>
+      <!-- Tabla categorias -->
+      <div class="flex flex-col mt-2 divide-y">
+          <ng-container *ngFor="let categorias of [1,1,1];">
+              <div  class="flex flex-row items-center justify-between py-4 px-0.5">
+                  <div class="flex flex-col">
+                      <div class="font-medium">{{categorias.nombre}}</div>
+                      <div style="display: flex; align-items: center;">
+                          <mat-icon [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                          <h6 style="margin-left: 5px;">
+                              {{categorias.cantidad}} vistas
+                          </h6>
+                      </div>
+                  </div>
+                  <button mat-icon-button matTooltip="Muy pronto">
+                      <mat-icon [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                  </button>
+              </div>
+          </ng-container>
+      </div>
+      <!-- <p *ngIf="categoriasEstadisticas.length == 0" class="text-4xl sm:text-3xl font-bold tracking-tight leading-none" style="margin: auto; color: gray;">
+          Sin visitas
+      </p> -->
+  </div>
+</div>
+
+
+<div class="mt-6 mb-4">
     <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
         Tabla de monitoreo
     </h3>
-    <div class="leading-6 truncate text-secondary">Estadísticas de visitas al menú virtual</div>
+    <div class="leading-6 truncate text-secondary">Estadísticas de los prestamos</div>
 </div>
-<div class="table-responsive">
+<div class="table-responsive mb-10">
     <p-table #dt1 dataKey="id" responsiveLayout="scroll"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
       [globalFilterFields]="['nombres','apellidos','correo','grado']" class="w-full" [value]="prestamos"
