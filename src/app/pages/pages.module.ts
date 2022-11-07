@@ -42,6 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ModalLibroComponent } from './libro/components/modal-libro/modal-libro.component';
 import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitoreo/tabla-monitoreo.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import { ModalComentarioComponent } from './comentario/components/modal-comentario/modal-comentario.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitore
     EstadisticasBasicasComponent,
     ModalLectorComponent,
     ModalLibroComponent,
-    TablaMonitoreoComponent
+    TablaMonitoreoComponent,
+    ModalComentarioComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +90,8 @@ import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitore
     InputTextModule,
     InputMaskModule,
     KeyFilterModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ],
   providers: [
     // ComponentesService,
@@ -115,7 +119,8 @@ import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitore
     InputTextModule,
     InputMaskModule,
     KeyFilterModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ]
 })
 export class PagesModule { }

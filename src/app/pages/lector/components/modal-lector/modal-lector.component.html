@@ -3,10 +3,6 @@
     <form [formGroup]="lectorForm">
         <div class="grid p-fluid gap-5">
             <div class="col-12 md:col-6 lg:col-4">
-                <span>Grado</span>
-                <p-dropdown appendTo="body" [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
-            </div>
-            <div class="col-12 md:col-6 lg:col-4">
                 <span>Nombres</span>
                 <input formControlName="nombres" pKeyFilter="alpha" type="text" pInputText>
             </div>
@@ -25,16 +21,42 @@
                 <span>Edad</span>
                 <input formControlName="edad" pKeyFilter="int" type="text" pInputText>
             </div>
+
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Sexo</span>
+                <div style="display: flex; justify-content: space-evenly;">
+                    <div style="display: flex;">
+                        <p-checkbox formControlName="sexo" value="F"></p-checkbox>
+                        <label class="m-auto pl-1">F</label>
+                    </div>
+                    <div style="display: flex;">
+                        <p-checkbox formControlName="sexo" value="M"></p-checkbox>
+                        <label class="m-auto pl-1">M</label>
+                    </div>
+                </div>
+
+                <!-- <input formControlName="sexo" pKeyFilter="int" type="text" pInputText> -->
+            </div>
     
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Correo</span>
                 <input formControlName="correo" type="text" pInputText>
             </div>
+
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Institucion</span>
+                <p-dropdown appendTo="body" [options]="instituciones" formControlName="institucion" placeholder="Seleccionar una institucion" [showClear]="true"></p-dropdown>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Grado</span>
+                <p-dropdown appendTo="body" [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
+            </div>
         </div>
     </form>
     <ng-template pTemplate="footer">
-        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
-        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        <p-button (click)="cerrar()" icon="pi pi-times" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-check" label="Aceptar" styleClass="p-button-text"
         [disabled]="!lectorForm.valid"></p-button>
     </ng-template>
 </p-dialog>

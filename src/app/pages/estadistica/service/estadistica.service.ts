@@ -45,5 +45,22 @@ export class EstadisticaService {
       response as number
     ));
   }
-  
+
+  getTop5Libros() {
+    return this.http.get(`${this.apiUrl}/estadistica/top5Libros`).pipe(map((response: any) =>
+      response as any
+    ));
+  }
+
+  getTop5Lectores() {
+    return this.http.get(`${this.apiUrl}/estadistica/top5Lectores`).pipe(map((response: any) =>
+      response as any
+    ));
+  }
+
+  getTop5Instituciones() {
+    return this.http.get(`${this.apiUrl}/estadistica/top5Instituciones`).pipe(map((response: any) =>
+      response as any
+    ));
+  }
 }

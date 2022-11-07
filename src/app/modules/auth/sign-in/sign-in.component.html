@@ -7,7 +7,7 @@
             </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Iniciar Sesion</div>
+            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Iniciar sesión</div>
             <div class="flex items-baseline mt-0.5 font-medium">
                 <!-- <div>Don't have an account?</div> -->
                 <!-- <a
@@ -95,7 +95,8 @@
                     mat-flat-button
                     [color]="'primary'"
                     [disabled]="signInForm.disabled"
-                    (click)="signIn()">
+                    (click)="signIn()"
+                    style="background-color: rgb(232, 93, 54);">
                     <span *ngIf="!signInForm.disabled">
                         Ingresar
                     </span>

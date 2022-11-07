@@ -13,7 +13,7 @@
   <div class="table-responsive">
     <p-table #dt1 dataKey="id" responsiveLayout="scroll"
       currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-      [globalFilterFields]="['nombres','apellidos','correo','grado']" class="w-full" [value]="libros"
+      [globalFilterFields]="['nombre','autor','estado','cantidad']" class="w-full" [value]="libros"
       responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true">
       <ng-template pTemplate="caption">
         <div class="p-d-flex">
@@ -32,6 +32,8 @@
           </th>
           <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon>
           </th>
+          <th pSortableColumn="cantidad">Cantidad <p-sortIcon field="cantidad"></p-sortIcon>
+          </th>
           <th>Acciones</th>
         </tr>
       </ng-template>
@@ -41,6 +43,7 @@
           <td>{{libro.autor}}</td>
           <td *ngIf="libro.estado == 'A'" style="color: green;">Disponible</td>
           <td *ngIf="libro.estado == 'P'" style="color: orange;">Prestado</td>
+          <td>{{libro.cantidad}}</td>
           <td style="display: flex; justify-content: start;">
             <button type="button" pButton icon="pi pi-pencil" class="p-button-text"
               (click)="modalLibro(libro)"></button>

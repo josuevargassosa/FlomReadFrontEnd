@@ -6,7 +6,7 @@ export type LibroLector = {
     lector: Lector;
     libro: Libro;
     estado: string;
-    tiempo?: string;
+    tiempo?: string | number;
     fechaCreacion: string;
     fechaModificacion: string;
 }

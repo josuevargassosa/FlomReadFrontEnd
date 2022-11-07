@@ -1,4 +1,4 @@
-<p-dialog header="Agregar Lector" [(visible)]="modalShowLibro" [modal]="true" [baseZIndex]="10000"
+<p-dialog [header]="titulo" [(visible)]="modalShowLibro" [modal]="true" [baseZIndex]="10000"
     [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="showModal()">
     <form [formGroup]="libroForm">
         <div class="grid p-fluid gap-5">
@@ -12,11 +12,24 @@
                 <input formControlName="autor" type="text" pInputText>
             </div>
 
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Codigo</span>
+                <input formControlName="codigo" type="text" pInputText>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-4">
+                <span>Cantidad</span>
+                <!-- <input formControlName="cantidad" type="text" pInputText> -->
+                <p-inputNumber formControlName="cantidad" inputId="minmax" inputId="minmax" mode="decimal" [min]="0">
+                </p-inputNumber>
+            </div>
+
+
         </div>
     </form>
     <ng-template pTemplate="footer">
-        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
-        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        <p-button (click)="cerrar()" icon="pi pi-times" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-check" label="Aceptar" styleClass="p-button-text"
         [disabled]="!libroForm.valid"></p-button>
     </ng-template>
 </p-dialog>

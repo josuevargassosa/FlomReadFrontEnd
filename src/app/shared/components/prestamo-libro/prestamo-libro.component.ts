@@ -18,8 +18,8 @@ export class PrestamoLibroComponent implements OnInit {
   createLibroPrestamo: createLibroLector;
 
   libroForm = new FormGroup({
-    lector: new FormControl('', Validators.required),
-    libro: new FormControl('', Validators.required),
+    lector: new FormControl(null, Validators.required),
+    libro: new FormControl(null, Validators.required),
   });
 
   constructor(
@@ -51,11 +51,14 @@ export class PrestamoLibroComponent implements OnInit {
 
   crear() {
     console.log(this.libroForm.value);
-    const data = {
-      idLibro: this.libroForm.value.libro,
-      idLector: this.libroForm.value.lector,
+    const data: any = {
+      idLibro: this.libroForm.value.libro.id,
+      idLector: this.libroForm.value.lector.id,
       estado: 'P'
     }
+    
+    console.log('PRESTAMO',data);
+
     this.sharedService.postPrestamo(data).subscribe((response: any) => {
       console.log(response);
       this.cerrar();

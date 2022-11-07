@@ -25,8 +25,8 @@
             </div>
         </div>
         <!-- User -->
-        <!-- <div class="flex flex-col items-center w-full p-4">
-            <div class="relative w-24 h-24">
+        <div class="flex flex-col items-center w-full p-4">
+            <!-- <div class="relative w-24 h-24">
                 <img
                     class="w-full h-full rounded-full"
                     *ngIf="user.avatar"
@@ -36,16 +36,16 @@
                     class="icon-size-24"
                     *ngIf="!user.avatar"
                     [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-            </div>
-            <div class="flex flex-col items-center justify-center w-full mt-6">
+            </div> -->
+            <div *ngIf="admin" class="flex flex-col items-center justify-center w-full mt-2">
                 <div class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
-                    {{user.name}}
+                    {{admin.nombre}}
                 </div>
-                <div class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
-                    {{user.email}}
+                <div class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-bold" style="color: rgb(231, 231, 231);">
+                    {{admin.correo}}
                 </div>
             </div>
-        </div> -->
+        </div>
     </ng-container>
     <!-- Navigation footer hook -->
     <!-- <ng-container fuseVerticalNavigationContentFooter>

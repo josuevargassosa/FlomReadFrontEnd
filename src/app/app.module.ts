@@ -14,6 +14,7 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { PagesModule } from './pages/pages.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http'; 
+import { AuthModule } from './core/auth/auth.module';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -27,6 +28,7 @@ const routerConfig: ExtraOptions = {
     imports     : [
         BrowserModule,
         HttpClientModule,
+        AuthModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
 

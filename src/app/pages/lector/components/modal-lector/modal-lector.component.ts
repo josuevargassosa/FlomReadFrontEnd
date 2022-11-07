@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { grados } from '../../../../shared/constantes';
+import { grados, Instituciones } from '../../../../shared/constantes';
 import { Lector } from '../../model/lector.model';
 import { LectorService } from '../../service/lector.service';
 @Component({
@@ -21,13 +21,16 @@ export class ModalLectorComponent implements OnInit {
     identificacion: new FormControl('',Validators.required),
     edad: new FormControl(undefined,Validators.required),
     correo: new FormControl('',Validators.required),
-    grado: new FormControl('Universidad',Validators.required),
+    grado: new FormControl('',Validators.required),
     fotoPerfil: new FormControl(''),
     estado: new FormControl('A'),
     clave: new FormControl(''),
+    institucion: new FormControl('', Validators.required),
+    sexo: new FormControl('', Validators.required),
   });
 
   grados = grados;
+  instituciones = Instituciones;
 
   constructor(
     private lectorService: LectorService
@@ -44,6 +47,8 @@ export class ModalLectorComponent implements OnInit {
       this.lectorForm.controls['edad'].setValue(this.lector.edad);
       this.lectorForm.controls['correo'].setValue(this.lector.correo);
       this.lectorForm.controls['grado'].setValue(this.lector.grado);  
+      this.lectorForm.controls['institucion'].setValue(this.lector.institucion);
+      this.lectorForm.controls['sexo'].setValue(this.lector.sexo);
     } else {
       this.lectorForm.reset();
     }

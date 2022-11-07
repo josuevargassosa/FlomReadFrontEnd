@@ -11,4 +11,6 @@ export type Lector = {
     clave?: string;
     fechaCreacion?: string;
     fechaModificacion?: string;
+    institucion: string;
+    sexo: string;
 }

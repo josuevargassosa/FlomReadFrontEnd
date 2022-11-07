@@ -17,7 +17,7 @@ export class ComentarioService {
   ) { }
 
   getComentarios(): Observable<Comentario[]> {
-    return this.http.get(`${this.apiUrl}/resumenes`).pipe(map((response: any) =>
+    return this.http.get(`${this.apiUrl}/Comentario`).pipe(map((response: any) =>
       response as Comentario[]
     ));
   }

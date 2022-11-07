@@ -20,11 +20,12 @@ export class ComentarioComponent implements OnInit {
   ngOnInit(): void {
     this.ComentarioService.getComentarios().subscribe((response: any) => {
       this.comentarios = response;
+      console.log(this.comentarios);
     })
   }
 
-  modalComentario(lector?) {
-    this.comentario = lector;
+  modalComentario(comentario?) {
+    this.comentario = comentario;
     this.modalShowComentario = true;
   }
 

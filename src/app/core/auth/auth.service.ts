@@ -3,10 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
+import { environment } from 'environments/environment';
+
+const httpHeaders = {
+    'Content-Type': 'application/json',
+    // 'api_key':environment.apiKey
+  }
 
 @Injectable()
 export class AuthService
 {
+
+    apiUrl = environment.serviceUrl;
+
     private _authenticated: boolean = false;
 
     /**
@@ -73,17 +82,24 @@ export class AuthService
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        const credenciales = {
+            correo: credentials.email,
+            clave: credentials.password
+        }
+        console.log('Sign' , credentials, credenciales);
+        return this._httpClient.post(`${this.apiUrl}/auth/login`, credenciales , { headers: httpHeaders }).pipe(
             switchMap((response: any) => {
-
+                console.log('response', response);
                 // Store the access token in the local storage
                 this.accessToken = response.accessToken;
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
+                console.log((response.usuarioFind));
+
                 // Store the user on the user service
-                this._userService.user = response.user;
+                this._userService.user = response.usuarioFind;
 
                 // Return a new observable with the response
                 return of(response);
@@ -172,20 +188,27 @@ export class AuthService
     check(): Observable<boolean>
     {
         // Check if the user is logged in
+
+        console.log('_authenticated', this._authenticated);
+        console.log('accessToken', this.accessToken, AuthUtils.isTokenExpired(this.accessToken) );
+
         if ( this._authenticated )
         {
+            console.log('check 1 _authenticated');
             return of(true);
         }
 
         // Check the access token availability
         if ( !this.accessToken )
         {
+            console.log('check 2 accessToken');
             return of(false);
         }
 
         // Check the access token expire date
         if ( AuthUtils.isTokenExpired(this.accessToken) )
         {
+            console.log('check 2 isTokenExpired');
             return of(false);
         }
 

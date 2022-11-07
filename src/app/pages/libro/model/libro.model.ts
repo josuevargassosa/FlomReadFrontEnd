@@ -5,6 +5,8 @@ export type Libro = {
     resumen: string;
     fotoPortada: string;
     estado: string;
+    cantidad: number;
+    codigo: string;
     fechaCreacion: string;
     fechaModificacion: string;
 }

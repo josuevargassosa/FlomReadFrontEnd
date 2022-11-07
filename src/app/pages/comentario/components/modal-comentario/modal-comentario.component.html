@@ -1,0 +1,9 @@
+
+
+<p-dialog header="Comentario" [(visible)]="modalShowLector" [modal]="true" [baseZIndex]="10000"
+[resizable]="false" [draggable]="false" (onHide)="cerrar()">
+    <!-- Comentario -->
+    <p *ngIf="comentario">
+        {{comentario.descripcion}}
+    </p>
+</p-dialog>

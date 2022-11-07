@@ -21,8 +21,8 @@ color="primary" (click)="modalPrestamo()">
         </div>
     </form>
     <ng-template pTemplate="footer">
-        <p-button (click)="cerrar()" icon="pi pi-check" label="Cerrar" styleClass="p-button-text"></p-button>
-        <p-button (click)="crear()" icon="pi pi-times" label="Aceptar" styleClass="p-button-text"
+        <p-button (click)="cerrar()" icon="pi pi-times" label="Cerrar" styleClass="p-button-text"></p-button>
+        <p-button (click)="crear()" icon="pi pi-check" label="Aceptar" styleClass="p-button-text"
         [disabled]="!libroForm.valid"></p-button>
     </ng-template>
 </p-dialog>
