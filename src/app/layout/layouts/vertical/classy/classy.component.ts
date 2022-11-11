@@ -7,7 +7,6 @@ import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
-import { SignInService } from 'app/modules/auth/sign-in/sign-in.service';
 import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
@@ -33,7 +32,6 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         private _userService: UserService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService,
-        private signInService: SignInService,
         private authService: AuthService
     )
     {
@@ -74,13 +72,13 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
                 this.user = user;
                 if (this.authService.accessToken) {
                     console.log('this.authService.accessToken', this.authService.accessToken);
-                   this.signInService.signIn().subscribe((data: any) => {
-                        console.log('AAAAAAA',data);
-                        this.admin = data;
+                //    this.authService.signIn().subscribe((data: any) => {
+                //         console.log('AAAAAAA',data);
+                //         this.admin = data;
                     
-                    }, err => {
-                        console.log('err', err);
-                    })
+                //     }, err => {
+                //         console.log('err', err);
+                //     })
                 }
             });
 

@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    serviceUrl: "http://localhost:4000",
+    //serviceUrl: "https://flomreadmysqlbackend-production.up.railway.app",
+    serviceUrl: "http://localhost:3000",
 };
 
 /*
