@@ -1,66 +1,106 @@
 <div class="mt-2 mb-4">
-    <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+    <h3
+        class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+    >
         Estadística especificas
     </h3>
     <div class="leading-6 truncate text-secondary">
-        Estadísticas de datos especificos
+        Estadísticas de libros mas leidos,libros mas leidos por instituciones y
+        lectores que mas libros han leido
     </div>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full min-w-0">
+<div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full min-w-0"
+>
     <!-- Top 5 libros -->
-    <div class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+    <div
+        class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden"
+    >
         <div class="flex justify-content-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">
                 Top 5 libros
             </div>
-            <i style="font-size: 2rem; color: green;" class="pi pi-file-excel"></i>
+            <i
+                style="font-size: 2rem; color: green; cursor: pointer"
+                class="pi pi-file-excel"
+                (click)="exportarExcel('libros')"
+            ></i>
         </div>
         <div class="flex flex-col flex-auto mt-8" style="padding: 5%">
-            <p-chart type="pie" [data]="dataGraficoLibros" [style]="{ width: '100%' }"></p-chart>
+            <p-chart
+                type="pie"
+                [data]="dataGraficoLibros"
+                [style]="{ width: '100%' }"
+            ></p-chart>
         </div>
     </div>
 
     <!-- Top 5 Instituciones -->
     <div
-        class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+        class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden"
+    >
         <div class="flex justify-content-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">
                 Top 5 instituciones
             </div>
-            <i style="font-size: 2rem; color: green;" class="pi pi-file-excel"></i>
+            <i
+                style="font-size: 2rem; color: green; cursor: pointer"
+                class="pi pi-file-excel"
+                (click)="exportarExcel('instituciones')"
+            ></i>
         </div>
         <div class="flex flex-col flex-auto mt-8" style="padding: 5%">
-            <p-chart type="doughnut" [data]="data" [style]="{'width': '100%'}"></p-chart>
+            <p-chart
+                type="doughnut"
+                [data]="data"
+                [style]="{ width: '100%' }"
+            ></p-chart>
         </div>
     </div>
 
     <!-- Top 5 Lectores -->
     <div
-        class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden">
+        class="sm:col-span-1 md:col-span-1 lg:col-span-1 flex flex-col flex-auto p-4 bg-card shadow rounded-2xl overflow-hidden"
+    >
         <div class="flex justify-content-between">
             <div class="text-lg font-medium tracking-tight leading-6 truncate">
                 Top 5 lectores
             </div>
-            <i style="font-size: 2rem; color: green;" class="pi pi-file-excel"></i>
+            <i
+                style="font-size: 2rem; color: green; cursor: pointer"
+                class="pi pi-file-excel"
+                (click)="exportarExcel('lectores')"
+            ></i>
         </div>
         <!-- Tabla categorias -->
         <div class="flex flex-col mt-2 divide-y">
             <ng-container *ngFor="let lector of dataLectores">
-                <div class="flex flex-row items-center justify-between py-4 px-0.5">
-                    <div class="flex flex-col" style="width: 100%;">
-                        <div class="font-medium"
-                            style="display: flex; align-items: flex-end; justify-content: space-between;">
+                <div
+                    class="flex flex-row items-center justify-between py-4 px-0.5"
+                >
+                    <div class="flex flex-col" style="width: 100%">
+                        <div
+                            class="font-medium"
+                            style="
+                                display: flex;
+                                align-items: flex-end;
+                                justify-content: space-between;
+                            "
+                        >
                             <div>
-                                {{ lector.Nombres }}
+                                {{ lector.Nombres }} {{ lector.Apellidos }}
                             </div>
                             <div>
-                                {{ lector.Cantidad }}<i class="pi pi-book ml-2"></i>
+                                {{ lector.Cantidad
+                                }}<i class="pi pi-book ml-2"></i>
                             </div>
                         </div>
                     </div>
                     <button mat-icon-button matTooltip="Muy pronto">
-                        <mat-icon [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                        <mat-icon
+                            [svgIcon]="'heroicons_solid:chevron-right'"
+                        ></mat-icon>
                     </button>
                 </div>
             </ng-container>
@@ -69,7 +109,9 @@
 </div>
 
 <div class="mt-6 mb-4">
-    <h3 class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+    <h3
+        class="text-3xl md:text-2xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate"
+    >
         Tabla de monitoreo
     </h3>
     <div class="leading-6 truncate text-secondary">
@@ -77,17 +119,37 @@
     </div>
 </div>
 <div class="table-responsive mb-10">
-    <p-table #dt1 dataKey="id" responsiveLayout="scroll"
+    <p-table
+        #dt1
+        dataKey="id"
+        responsiveLayout="scroll"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
-        [globalFilterFields]="['nombres', 'nombre', 'fechaCreacion','tiempo', 'estado']" class="w-full" [value]="prestamos"
-        responsiveLayout="scroll" [paginator]="true" [rows]="10" [showCurrentPageReport]="true">
+        [globalFilterFields]="[
+            'nombres',
+            'nombre',
+            'fechaCreacion',
+            'tiempo',
+            'estado'
+        ]"
+        class="w-full"
+        [value]="prestamos"
+        responsiveLayout="scroll"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+    >
         <ng-template pTemplate="caption">
             <div class="p-d-flex">
                 <span class="p-input-icon-left p-ml-auto">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="
                             dt1.filterGlobal($event.target.value, 'contains')
-                        " placeholder="Buscar..." />
+                        "
+                        placeholder="Buscar..."
+                    />
                 </span>
             </div>
         </ng-template>
@@ -100,7 +162,8 @@
                     Libro <p-sortIcon field="nombre"></p-sortIcon>
                 </th>
                 <th pSortableColumn="fechaCreacion">
-                    Fecha prestamo <p-sortIcon field="fechaCreacion"></p-sortIcon>
+                    Fecha prestamo
+                    <p-sortIcon field="fechaCreacion"></p-sortIcon>
                 </th>
                 <th pSortableColumn="tiempo">
                     Dias transcurrido <p-sortIcon field="tiempo"></p-sortIcon>
@@ -113,13 +176,21 @@
         </ng-template>
         <ng-template pTemplate="body" let-prestamo>
             <tr>
-                <td>{{ prestamo.lector.apellidos }} {{ prestamo.lector.nombres }}</td>
+                <td>
+                    {{ prestamo.lector.apellidos }}
+                    {{ prestamo.lector.nombres }}
+                </td>
                 <td>{{ prestamo.libro.nombre }}</td>
-                <td>{{ prestamo.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ prestamo.fechaCreacion | date: "dd/MM/yyyy" }}</td>
                 <td>{{ prestamo.tiempo }}</td>
                 <td>{{ prestamo.estado }}</td>
                 <td style="display: flex; justify-content: start">
-                    <button type="button" pButton icon="pi pi-pencil" class="p-button-text"></button>
+                    <button
+                        type="button"
+                        pButton
+                        icon="pi pi-pencil"
+                        class="p-button-text"
+                    ></button>
                 </td>
             </tr>
         </ng-template>

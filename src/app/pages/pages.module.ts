@@ -42,85 +42,83 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ModalLibroComponent } from './libro/components/modal-libro/modal-libro.component';
 import { TablaMonitoreoComponent } from './estadistica/components/tabla-monitoreo/tabla-monitoreo.component';
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
 import { ModalComentarioComponent } from './comentario/components/modal-comentario/modal-comentario.component';
 
-
 @NgModule({
-  declarations: [
-    ComentarioComponent,
-    LibroComponent,
-    LectorComponent,
-    EstadisticaComponent,
-    EstadisticasBasicasComponent,
-    ModalLectorComponent,
-    ModalLibroComponent,
-    TablaMonitoreoComponent,
-    ModalComentarioComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    // RouterModule,
-    // PagesRoutingModule,
-    // AdminModule,
-    // DashboardModule,
-    // MenuModule,
+    declarations: [
+        ComentarioComponent,
+        LibroComponent,
+        LectorComponent,
+        EstadisticaComponent,
+        EstadisticasBasicasComponent,
+        ModalLectorComponent,
+        ModalLibroComponent,
+        TablaMonitoreoComponent,
+        ModalComentarioComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        // RouterModule,
+        // PagesRoutingModule,
+        // AdminModule,
+        // DashboardModule,
+        // MenuModule,
 
-    ReactiveFormsModule,
+        ReactiveFormsModule,
 
-    //Fuse Modules
-    FuseCardModule,
-    FuseAlertModule,
-    SharedModule,
-    SkeletonModule,
-    ScrollPanelModule,
-    NgApexchartsModule,
-    ChartModule,
-    PanelModule,
-    ButtonModule,
-    BadgeModule,
-    InputTextareaModule,
-    InputNumberModule,
-    AvatarModule,
-    RatingModule,
-    DialogModule,
-    OrderListModule,
-    TableModule,
-    InputTextModule,
-    InputMaskModule,
-    KeyFilterModule,
-    DropdownModule,
-    CheckboxModule
-  ],
-  providers: [
-    // ComponentesService,
-  ],
-  exports: [
-    
-    //Fuse Modules
-    FuseCardModule,
-    FuseAlertModule,
-    SharedModule,
-    SkeletonModule,
-    ScrollPanelModule,
-    NgApexchartsModule,
-    ChartModule,
-    PanelModule,
-    ButtonModule,
-    BadgeModule,
-    InputTextareaModule,
-    InputNumberModule,
-    AvatarModule,
-    RatingModule,
-    DialogModule,
-    OrderListModule,
-    TableModule,
-    InputTextModule,
-    InputMaskModule,
-    KeyFilterModule,
-    DropdownModule,
-    CheckboxModule
-  ]
+        //Fuse Modules
+        FuseCardModule,
+        FuseAlertModule,
+        SharedModule,
+        SkeletonModule,
+        ScrollPanelModule,
+        NgApexchartsModule,
+        ChartModule,
+        PanelModule,
+        ButtonModule,
+        BadgeModule,
+        InputTextareaModule,
+        InputNumberModule,
+        AvatarModule,
+        RatingModule,
+        DialogModule,
+        OrderListModule,
+        TableModule,
+        InputTextModule,
+        InputMaskModule,
+        KeyFilterModule,
+        DropdownModule,
+        CheckboxModule,
+    ],
+    providers: [
+        // ComponentesService,
+    ],
+    exports: [
+        //Fuse Modules
+        FuseCardModule,
+        FuseAlertModule,
+        SharedModule,
+        SkeletonModule,
+        ScrollPanelModule,
+        NgApexchartsModule,
+        ChartModule,
+        PanelModule,
+        ButtonModule,
+        BadgeModule,
+        InputTextareaModule,
+        InputNumberModule,
+        AvatarModule,
+        RatingModule,
+        DialogModule,
+        OrderListModule,
+        TableModule,
+        InputTextModule,
+        InputMaskModule,
+        KeyFilterModule,
+        DropdownModule,
+        CheckboxModule,
+    ],
 })
-export class PagesModule { }
+export class PagesModule {}

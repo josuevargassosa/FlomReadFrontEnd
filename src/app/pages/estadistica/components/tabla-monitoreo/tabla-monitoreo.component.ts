@@ -16,26 +16,31 @@ export class TablaMonitoreoComponent implements OnInit {
     prestamos: LibroLector[] = [];
     dataGraficoLibros: any;
     dataBarrasInstituciones: any;
-    dataLectores: any;
     data: any;
     chartOptions: any;
     subscription: Subscription;
     config: AppConfig;
 
+    dataLectores: any;
+    dataLibros: any;
+    dataInstituciones: any;
+
     constructor(
         private libroService: LibroService,
         private sharedService: SharedService,
-        private estadisticasService: EstadisticaService,
+        private estadisticasService: EstadisticaService
     ) {}
 
     ngOnInit(): void {
         try {
             this.sharedService.getPrestamos().subscribe((response: any) => {
                 this.prestamos = response;
-                console.log('PRESTAMOS',response);
+                console.log('PRESTAMOS', response);
                 this.prestamos.map((m) => {
-                    m.tiempo = new Date().getTime() - new Date(m.fechaCreacion).getTime();
-                    m.tiempo =  (m.tiempo / (1000 * 60 * 60 * 24)).toFixed(0);   
+                    m.tiempo =
+                        new Date().getTime() -
+                        new Date(m.fechaCreacion).getTime();
+                    m.tiempo = (m.tiempo / (1000 * 60 * 60 * 24)).toFixed(0);
                     if (m.estado == 'P') {
                         m.estado = 'Prestado';
                     } else if (m.estado == 'L') {
@@ -45,6 +50,7 @@ export class TablaMonitoreoComponent implements OnInit {
                 });
                 console.log(this.prestamos);
             });
+            this.cargarLectores();
             this.cargarLibros();
             this.cargarInstituciones();
         } catch (error) {
@@ -52,20 +58,74 @@ export class TablaMonitoreoComponent implements OnInit {
         }
     }
 
-    cargarTops5() {}
+    exportarExcel(typeData: string, data?: any) {
+        switch (typeData) {
+            case 'libros':
+                const libros = this.createFormatExcel(typeData);
+                console.log('DATA EXPORT', libros);
+                this.sharedService.saveToFileSystem(libros);
+                break;
+            case 'instituciones':
+                const instituciones = this.createFormatExcel(typeData);
+                console.log('DATA EXPORT', instituciones);
+                this.sharedService.saveToFileSystem(instituciones);
+                break;
+            case 'lectores':
+                const lectores = this.createFormatExcel(typeData);
+                console.log('DATA EXPORT', lectores);
+                this.sharedService.saveToFileSystem(lectores);
+                break;
+        }
+    }
 
-    cargarLibros() {
+    createFormatExcel(typeData: string) {
+        switch (typeData) {
+            case 'libros':
+                let dataLibros = [];
+                this.dataLectores.forEach((element: any) => {
+                    dataLibros.push({
+                        Nombre: element.Nombre,
+                        Leidos: element.Cantidad,
+                    });
+                });
+                return dataLibros;
+            case 'instituciones':
+                let dataInstituciones = [];
+                this.dataInstituciones.forEach((element: any) => {
+                    dataInstituciones.push({
+                        Institucion: element.Institucion,
+                        LibrosLeidos: element.Cantidad,
+                    });
+                });
+                return this.dataInstituciones;
+            case 'lectores':
+                let dataLectores = [];
+                this.dataLectores.forEach((element: any) => {
+                    dataLectores.push({
+                        Nombres: element.Nombres,
+                        Apellidos: element.Apellidos,
+                        LibrosLeidos: element.Cantidad,
+                    });
+                });
+                return dataLectores;
+        }
+    }
+
+    cargarLectores() {
         this.estadisticasService
             .getTop5Lectores()
             .subscribe((response: any) => {
                 this.dataLectores = response;
                 console.log('Lectores', response);
             });
+    }
 
+    cargarLibros() {
         let topNombresLibros: any[] = [];
         let topLibrosLeidos: any[] = [];
 
         this.estadisticasService.getTop5Libros().subscribe((response: []) => {
+            this.dataLibros = response;
             console.log('Libros', response);
             response.forEach((element: any) => {
                 topNombresLibros.push(element.Nombre);
@@ -99,37 +159,33 @@ export class TablaMonitoreoComponent implements OnInit {
         });
     }
 
-
     async cargarInstituciones() {
         let productosEstadisticas = [];
-        let dataNombres = []
-        let dataCantidad = []
+        let dataNombres = [];
+        let dataCantidad = [];
         this.estadisticasService
             .getTop5Instituciones()
             .subscribe((response: any) => {
-              console.log('Instituciones', response);
+                console.log('Instituciones', response);
+                this.dataInstituciones = response;
                 response.forEach((element: any) => {
                     dataNombres.push(element.Institucion);
                     dataCantidad.push(element.Cantidad);
                 });
-              this.data = {
-                labels: dataNombres,
-                datasets: [
-                    {
-                        data: dataCantidad,
-                        backgroundColor: [
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ],
-                        hoverBackgroundColor: [
-                            "#FF6384",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ]
-                    }
-                ]
-            };
+                this.data = {
+                    labels: dataNombres,
+                    datasets: [
+                        {
+                            data: dataCantidad,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                            hoverBackgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                            ],
+                        },
+                    ],
+                };
 
                 // productosEstadisticas = response;
                 // let topNombres: any[] = [];
@@ -155,9 +211,7 @@ export class TablaMonitoreoComponent implements OnInit {
                 //   labels: topNombres,
                 //   datasets: envioDato
                 // };
-                console.log("Instituciones GRAFICO", this.data);
-
+                console.log('Instituciones GRAFICO', this.data);
             });
-
     }
 }

@@ -24,7 +24,6 @@ export class AuthUtils {
      * @param offsetSeconds
      */
     static isTokenExpired(token: string, offsetSeconds?: number): boolean {
-        console.log('isExpired is:', isJwtExpired(token));
         return isJwtExpired(token);
     }
 
