@@ -2,7 +2,7 @@
 color="primary" (click)="modalPrestamo()">
 </button>
 
-<p-dialog header="Agregar Lector" [(visible)]="modalShowPrestamo" [modal]="true" [baseZIndex]="10000"
+<p-dialog header="Prestar Libro" [(visible)]="modalShowPrestamo" [modal]="true" [baseZIndex]="10000"
     [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="cargarDatos()">
     <form [formGroup]="libroForm">
         <div class="flex p-fluid gap-5">
