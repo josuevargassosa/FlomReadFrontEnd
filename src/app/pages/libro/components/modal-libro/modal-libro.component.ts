@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'app/shared/services/shared.service';
+import { map } from 'lodash';
+import { finalize, Observable, Subject, Subscription } from 'rxjs';
 import { Libro } from '../../model/libro.model';
 import { LibroService } from '../../service/libro.service';
 
@@ -15,6 +17,7 @@ export class ModalLibroComponent implements OnInit {
     @Output() modalCerrar = new EventEmitter<Boolean>();
 
     titulo: string;
+    photoBook: File;
 
     libroForm = new FormGroup({
         nombre: new FormControl('', Validators.required),
@@ -52,11 +55,36 @@ export class ModalLibroComponent implements OnInit {
         }
     }
 
+    onFileChange(event) {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            this.photoBook = file;
+            console.log(this.photoBook);
+        }
+    }
+
+    uploadPhoto() {
+        const formData = new FormData();
+        formData.append(
+            'file',
+            this.photoBook,
+            this.libroForm.controls['nombre'].value
+        );
+        this.libroService.postFile(formData).subscribe((response: any) => {
+            console.log(response.secure_url);
+            this.modalCerrar.emit(false);
+            this.libroForm.controls['fotoPortada'].setValue(
+                response.secure_url
+            );
+            this.crearLibro(response.secure_url);
+        });
+    }
+
     cerrar() {
         this.modalCerrar.emit(false);
     }
 
-    crear() {
+    async crear() {
         if (this.libro) {
             //Editar
             this.libroService
@@ -73,17 +101,31 @@ export class ModalLibroComponent implements OnInit {
         } else {
             //Crear
             this.libroForm.controls['estado'].setValue('A');
-            this.libroService
-                .crearLibro(this.libroForm.value as Libro)
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.modalCerrar.emit(false);
-                    this.sharedService.modalAlert(
-                        'Creado exitosamente',
-                        'El libro fue creado correctamente',
-                        'success'
-                    );
-                });
+            await this.uploadPhoto();
         }
+    }
+
+    crearLibro(url) {
+        console.log('URLLLL', url);
+        console.log('FORM', this.libroForm.value);
+        this.libroForm.controls['fotoPortada'].setValue(url);
+        this.libroService.crearLibro(this.libroForm.value as Libro).subscribe(
+            (response: any) => {
+                console.log(response);
+                this.modalCerrar.emit(false);
+                this.sharedService.modalAlert(
+                    'Creado exitosamente',
+                    'El libro fue creado correctamente',
+                    'success'
+                );
+            },
+            (error) => {
+                this.sharedService.modalAlert(
+                    'Error',
+                    'No se pudo crear el libro',
+                    'error'
+                );
+            }
+        );
     }
 }

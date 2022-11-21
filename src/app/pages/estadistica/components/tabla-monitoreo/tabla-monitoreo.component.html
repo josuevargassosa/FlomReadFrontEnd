@@ -171,7 +171,7 @@
                 <th pSortableColumn="estado">
                     Estado <p-sortIcon field="estado"></p-sortIcon>
                 </th>
-                <th>Acciones</th>
+                <!-- <th>Acciones</th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-prestamo>
@@ -184,14 +184,14 @@
                 <td>{{ prestamo.fechaCreacion | date: "dd/MM/yyyy" }}</td>
                 <td>{{ prestamo.tiempo }}</td>
                 <td>{{ prestamo.estado }}</td>
-                <td style="display: flex; justify-content: start">
+                <!-- <td style="display: flex; justify-content: start">
                     <button
                         type="button"
                         pButton
                         icon="pi pi-pencil"
                         class="p-button-text"
                     ></button>
-                </td>
+                </td> -->
             </tr>
         </ng-template>
     </p-table>

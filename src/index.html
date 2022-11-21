@@ -1,62 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>Flom Read</title>
+        <meta charset="utf-8" />
+        <meta
+            name="description"
+            content="Admin Template and Starter Kit with Angular, Angular Material Components and TailwindCSS"
+        />
+        <meta
+            name="keywords"
+            content="Fuse,HTML,CSS,Angular,Angular 2,Angular 11,Angular 12,Angular 13,Material,Material 2,Angular Components,Tailwind,Tailwind CSS,TailwindCSS,Admin Template,Admin Starter Kit"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+        />
 
-<head>
-    <title>Flom Read</title>
-    <meta charset="utf-8">
-    <meta name="description"
-        content="Admin Template and Starter Kit with Angular, Angular Material Components and TailwindCSS">
-    <meta name="keywords"
-        content="Fuse,HTML,CSS,Angular,Angular 2,Angular 11,Angular 12,Angular 13,Material,Material 2,Angular Components,Tailwind,Tailwind CSS,TailwindCSS,Admin Template,Admin Starter Kit">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+        <base href="/" />
 
-    <base href="/">
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Favicon -->
+        <!-- <link rel="icon" type="image/png" href="favicon-16x16.png"> -->
+        <!-- <link rel="icon" type="image/png" href="favicon-32x32.png"> -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="./assets/images/Logo-FLOM.ico"
+        />
 
-    <!-- Favicon -->
-    <!-- <link rel="icon" type="image/png" href="favicon-16x16.png"> -->
-    <!-- <link rel="icon" type="image/png" href="favicon-32x32.png"> -->
-    <link rel="icon" type="image/png" href="./assets/images/Logo-FLOM.ico">
+        <!-- Fonts -->
+        <link href="assets/fonts/inter/inter.css" rel="stylesheet" />
 
-    <!-- Fonts -->
-    <link href="assets/fonts/inter/inter.css" rel="stylesheet">
- 
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-        rel="stylesheet">
+        <link href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- Icon fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Icon fonts -->
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
 
-    <!-- Splash screen styles -->
-    <link href="assets/styles/splash-screen.css" rel="stylesheet">
+        <!-- Splash screen styles -->
+        <link href="assets/styles/splash-screen.css" rel="stylesheet" />
+    </head>
 
-</head>
+    <body>
+        <!-- Splash screen -->
+        <fuse-splash-screen>
+            <img
+                src="assets/images/Logo-FLOM.png"
+                style="width: 150px; height: 100px"
+                alt="Logo Flom"
+            />
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </fuse-splash-screen>
 
-<body>
-
-    <!-- Splash screen -->
-    <fuse-splash-screen>
-        <img src="assets/images/logo/logo.svg" alt="Fuse logo">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
-    </fuse-splash-screen>
-
-    <!-- App root -->
-    <app-root></app-root>
-
-</body>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+        <!-- App root -->
+        <app-root></app-root>
+    </body>
+    <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+    ></script>
 
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -64,21 +88,21 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyCL7cpk4DoYJXzK9E0wno3kCrKWcw35KJA",
-          authDomain: "flomread.firebaseapp.com",
-          projectId: "flomread",
-          storageBucket: "flomread.appspot.com",
-          messagingSenderId: "191883701211",
-          appId: "1:191883701211:web:4061ab32af5a2a098415fe",
-          measurementId: "G-02R2MTWMLG"
+            apiKey: "AIzaSyCL7cpk4DoYJXzK9E0wno3kCrKWcw35KJA",
+            authDomain: "flomread.firebaseapp.com",
+            projectId: "flomread",
+            storageBucket: "flomread.appspot.com",
+            messagingSenderId: "191883701211",
+            appId: "1:191883701211:web:4061ab32af5a2a098415fe",
+            measurementId: "G-02R2MTWMLG",
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-      </script>
+    </script>
 </html>

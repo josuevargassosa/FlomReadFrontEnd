@@ -5,43 +5,52 @@ import { map, Observable } from 'rxjs';
 import { Libro } from '../model/libro.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class LibroService {
+    apiUrl = environment.serviceUrl;
 
-  apiUrl = environment.serviceUrl;
+    constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+    getLibros(): Observable<Libro[]> {
+        return this.http
+            .get(`${this.apiUrl}/libro`)
+            .pipe(map((response: any) => response as Libro[]));
+    }
 
-  getLibros(): Observable<Libro[]> {
-    return this.http.get(`${this.apiUrl}/libro`).pipe(map((response: any) =>
-      response as Libro[]
-    ));
-  }
+    getLibroById(idLibro): Observable<Libro> {
+        return this.http
+            .get(`${this.apiUrl}/libro/${idLibro}`)
+            .pipe(map((response: any) => response as Libro));
+    }
 
-  getLibroById(idLibro): Observable<Libro> {
-    return this.http.get(`${this.apiUrl}/libro/${idLibro}`).pipe(map((response: any) =>
-      response as Libro
-    ));
-  }
+    getLibrosByIdLibro(idLibro): Observable<Libro[]> {
+        return this.http
+            .get(`${this.apiUrl}/libro/${idLibro}`)
+            .pipe(map((response: any) => response as Libro[]));
+    }
 
-  getLibrosByIdLibro(idLibro): Observable<Libro[]> {
-    return this.http.get(`${this.apiUrl}/libro/${idLibro}`).pipe(map((response: any) =>
-      response as Libro[]
-    ));
-  }
+    crearLibro(data: Libro): Observable<Libro> {
+        return this.http
+            .post(`${this.apiUrl}/libro`, data)
+            .pipe(map((response: any) => response as Libro));
+    }
 
-  crearLibro(data: Libro): Observable<Libro> {
-    return this.http.post(`${this.apiUrl}/libro`, data).pipe(map((response: any) =>
-      response as Libro
-    ));
-  }
+    actualizarLibro(data: Libro, idLibro): Observable<Libro> {
+        return this.http
+            .put(`${this.apiUrl}/libro/${idLibro}`, data)
+            .pipe(map((response: any) => response as Libro));
+    }
 
-  actualizarLibro(data: Libro, idLibro): Observable<Libro> {
-    return this.http.put(`${this.apiUrl}/libro/${idLibro}`, data).pipe(map((response: any) =>
-      response as Libro
-    ));
-  }
+    postFile(fileToUpload) {
+        return this.http
+            .post(`${this.apiUrl}/libro/cargar-foto`, fileToUpload)
+            .pipe(map((response: any) => response));
+    }
+
+    deleteLibro(idLibro) {
+        return this.http
+            .delete(`${this.apiUrl}/libro/${idLibro}`)
+            .pipe(map((response: any) => response));
+    }
 }
