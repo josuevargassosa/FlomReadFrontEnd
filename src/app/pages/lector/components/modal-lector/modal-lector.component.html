@@ -1,62 +1,108 @@
-<p-dialog header="Agregar Lector" [(visible)]="modalShowLector" [modal]="true" [baseZIndex]="10000"
-    [resizable]="false" [draggable]="false" (onHide)="cerrar()" (onShow)="showModal()">
+<p-dialog
+    header="Agregar Lector"
+    [(visible)]="modalShowLector"
+    [modal]="true"
+    [baseZIndex]="10000"
+    [resizable]="false"
+    [draggable]="false"
+    (onHide)="cerrar()"
+    (onShow)="showModal()"
+>
     <form [formGroup]="lectorForm">
         <div class="grid p-fluid gap-5">
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Nombres</span>
-                <input formControlName="nombres" pKeyFilter="alpha" type="text" pInputText>
+                <input formControlName="nombres" type="text" pInputText />
             </div>
-    
+
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Apellidos</span>
-                <input formControlName="apellidos" pKeyFilter="alpha" type="text" pInputText>
+                <input formControlName="apellidos" type="text" pInputText />
             </div>
 
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Identificacion</span>
-                <input formControlName="identificacion" pKeyFilter="int" type="text" pInputText>
+                <input
+                    formControlName="identificacion"
+                    pKeyFilter="int"
+                    type="text"
+                    pInputText
+                />
             </div>
-    
+
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Edad</span>
-                <input formControlName="edad" pKeyFilter="int" type="text" pInputText>
+                <input
+                    formControlName="edad"
+                    pKeyFilter="int"
+                    type="text"
+                    pInputText
+                />
             </div>
 
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Sexo</span>
-                <div style="display: flex; justify-content: space-evenly;">
-                    <div style="display: flex;">
-                        <p-checkbox formControlName="sexo" value="F"></p-checkbox>
+                <div style="display: flex; justify-content: space-evenly">
+                    <div style="display: flex">
+                        <p-checkbox
+                            formControlName="sexo"
+                            value="F"
+                        ></p-checkbox>
                         <label class="m-auto pl-1">F</label>
                     </div>
-                    <div style="display: flex;">
-                        <p-checkbox formControlName="sexo" value="M"></p-checkbox>
+                    <div style="display: flex">
+                        <p-checkbox
+                            formControlName="sexo"
+                            value="M"
+                        ></p-checkbox>
                         <label class="m-auto pl-1">M</label>
                     </div>
                 </div>
 
                 <!-- <input formControlName="sexo" pKeyFilter="int" type="text" pInputText> -->
             </div>
-    
+
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Correo</span>
-                <input formControlName="correo" type="text" pInputText>
+                <input formControlName="correo" type="text" pInputText />
             </div>
 
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Institucion</span>
-                <p-dropdown appendTo="body" [options]="instituciones" formControlName="institucion" placeholder="Seleccionar una institucion" [showClear]="true"></p-dropdown>
+                <p-dropdown
+                    appendTo="body"
+                    [options]="instituciones"
+                    formControlName="institucion"
+                    placeholder="Seleccionar una institucion"
+                    [showClear]="true"
+                ></p-dropdown>
             </div>
 
             <div class="col-12 md:col-6 lg:col-4">
                 <span>Grado</span>
-                <p-dropdown appendTo="body" [options]="grados" formControlName="grado" placeholder="Seleccionar un grado" [showClear]="true"></p-dropdown>
+                <p-dropdown
+                    appendTo="body"
+                    [options]="grados"
+                    formControlName="grado"
+                    placeholder="Seleccionar un grado"
+                    [showClear]="true"
+                ></p-dropdown>
             </div>
         </div>
     </form>
     <ng-template pTemplate="footer">
-        <p-button (click)="cerrar()" icon="pi pi-times" label="Cerrar" styleClass="p-button-text"></p-button>
-        <p-button (click)="crear()" icon="pi pi-check" label="Aceptar" styleClass="p-button-text"
-        [disabled]="!lectorForm.valid"></p-button>
+        <p-button
+            (click)="cerrar()"
+            icon="pi pi-times"
+            label="Cerrar"
+            styleClass="p-button-text"
+        ></p-button>
+        <p-button
+            (click)="crear()"
+            icon="pi pi-check"
+            label="Aceptar"
+            styleClass="p-button-text"
+            [disabled]="!lectorForm.valid"
+        ></p-button>
     </ng-template>
 </p-dialog>

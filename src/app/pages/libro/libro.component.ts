@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'app/shared/services/shared.service';
 import { Libro } from './model/libro.model';
 import { LibroService } from './service/libro.service';
 
@@ -12,11 +13,15 @@ export class LibroComponent implements OnInit {
     libros: Libro[] = [];
     libro: Libro;
 
-    constructor(private libroService: LibroService) {}
+    constructor(
+        private libroService: LibroService,
+        private sharedService: SharedService
+    ) {}
 
     ngOnInit(): void {
         this.libroService.getLibros().subscribe((response: any) => {
             this.libros = response;
+            console.log(this.libros);
         });
     }
 
@@ -31,8 +36,27 @@ export class LibroComponent implements OnInit {
     }
 
     eliminarLibro(id: number) {
-        // this.libroService.deleteLibro(id).subscribe((response: any) => {
-        //   this.ngOnInit();
-        // })
+        console.log(id);
+        this.sharedService
+            .modalAlertButtons('¿Esta seguro de eliminar el registro?')
+            .then((result) => {
+                if (result.isConfirmed) {
+                    this.libroService
+                        .deleteLibro(id)
+                        .subscribe((response: any) => {
+                            console.log(response);
+                            this.sharedService.modalAlert(
+                                'Libro eliminado correctamente',
+                                '',
+                                'success'
+                            );
+                            this.ngOnInit();
+                        });
+                    //Swal.fire('Saved!', '', 'success')
+                } else if (result.isDenied) {
+                    this.modalCerrar();
+                    //Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
     }
 }

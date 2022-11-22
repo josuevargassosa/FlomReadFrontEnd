@@ -17,13 +17,14 @@ export class ModalLibroComponent implements OnInit {
     @Output() modalCerrar = new EventEmitter<Boolean>();
 
     titulo: string;
-    photoBook: File;
+    fileBook: File;
+    photoBook: string;
 
     libroForm = new FormGroup({
         nombre: new FormControl('', Validators.required),
         autor: new FormControl('', Validators.required),
         resumen: new FormControl(''),
-        fotoPortada: new FormControl(''),
+        fotoPortada: new FormControl('', Validators.required),
         estado: new FormControl('A'),
         cantidad: new FormControl(0, Validators.required),
         codigo: new FormControl(''),
@@ -47,6 +48,7 @@ export class ModalLibroComponent implements OnInit {
             this.libroForm.controls['fotoPortada'].setValue(
                 this.libro.fotoPortada
             );
+            this.photoBook = this.libro.fotoPortada;
             this.libroForm.controls['estado'].setValue(this.libro.estado);
             this.libroForm.controls['cantidad'].setValue(this.libro.cantidad);
             this.libroForm.controls['codigo'].setValue(this.libro.codigo);
@@ -58,21 +60,30 @@ export class ModalLibroComponent implements OnInit {
     onFileChange(event) {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            this.photoBook = file;
-            console.log(this.photoBook);
+            this.fileBook = file;
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.photoBook = reader.result as string;
+                this.libroForm.controls['fotoPortada'].setValue(this.photoBook);
+            };
         }
+    }
+
+    cerrar() {
+        this.modalCerrar.emit(false);
+        this.photoBook = '';
+        this.libroForm.reset();
     }
 
     uploadPhoto() {
         const formData = new FormData();
         formData.append(
             'file',
-            this.photoBook,
+            this.fileBook,
             this.libroForm.controls['nombre'].value
         );
         this.libroService.postFile(formData).subscribe((response: any) => {
-            console.log(response.secure_url);
-            this.modalCerrar.emit(false);
             this.libroForm.controls['fotoPortada'].setValue(
                 response.secure_url
             );
@@ -80,29 +91,64 @@ export class ModalLibroComponent implements OnInit {
         });
     }
 
-    cerrar() {
-        this.modalCerrar.emit(false);
+    async crear() {
+        if (this.libroForm.valid) {
+            if (this.libro) {
+                //Editar
+                this.libroService
+                    .actualizarLibro(
+                        this.libroForm.value as Libro,
+                        this.libro.id
+                    )
+                    .subscribe((response: any) => {
+                        console.log(response);
+                        this.cerrar();
+                        this.sharedService.modalAlert(
+                            'Actualizado exitosamente',
+                            'El libro fue actualizado correctamente',
+                            'success'
+                        );
+                    });
+            } else {
+                //Crear
+                this.libroForm.controls['estado'].setValue('A');
+                await this.getLibroByCodigo(
+                    this.libroForm.controls['codigo'].value
+                );
+            }
+        }
     }
 
-    async crear() {
-        if (this.libro) {
-            //Editar
-            this.libroService
-                .actualizarLibro(this.libroForm.value as Libro, this.libro.id)
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.modalCerrar.emit(false);
-                    this.sharedService.modalAlert(
-                        'Actualizado exitosamente',
-                        'El libro fue actualizado correctamente',
-                        'success'
-                    );
-                });
-        } else {
-            //Crear
-            this.libroForm.controls['estado'].setValue('A');
-            await this.uploadPhoto();
-        }
+    getLibroByCodigo(codigo: string) {
+        this.libroService.getLibroByCodigo(codigo).subscribe(
+            (response: Libro) => {
+                console.log('Libro existente', response);
+                this.modalCerrar.emit(false);
+                this.sharedService
+                    .modalAlertButtons(
+                        `El libro ${response.nombre} con codigo ${response.codigo} ya existe en el sistema, desea activarlo?`
+                    )
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            this.libroService
+                                .updateStateLibro(response.id, 'A')
+                                .subscribe((response: Libro) => {
+                                    console.log(response);
+                                    this.cerrar();
+                                    this.sharedService.modalAlert(
+                                        'Reactivado exitosamente',
+                                        'El libro fue reactivado correctamente',
+                                        'success'
+                                    );
+                                });
+                        }
+                    });
+            },
+            (error) => {
+                console.log(error);
+                this.uploadPhoto();
+            }
+        );
     }
 
     crearLibro(url) {
@@ -112,7 +158,7 @@ export class ModalLibroComponent implements OnInit {
         this.libroService.crearLibro(this.libroForm.value as Libro).subscribe(
             (response: any) => {
                 console.log(response);
-                this.modalCerrar.emit(false);
+                this.cerrar();
                 this.sharedService.modalAlert(
                     'Creado exitosamente',
                     'El libro fue creado correctamente',
@@ -120,11 +166,7 @@ export class ModalLibroComponent implements OnInit {
                 );
             },
             (error) => {
-                this.sharedService.modalAlert(
-                    'Error',
-                    'No se pudo crear el libro',
-                    'error'
-                );
+                this.sharedService.modalAlert('Error', error.message, 'error');
             }
         );
     }

@@ -40,6 +40,15 @@
             <div class="col-12 md:col-6 lg:col-4">
                 <input type="file" (change)="onFileChange($event)" />
             </div>
+            <div class="col-12 md:col-6 lg:col-4 pl-10 pr-10 pt-5 pb-5">
+                <img
+                    *ngIf="photoBook"
+                    [src]="photoBook"
+                    alt="photoBook"
+                    width="50"
+                    height="50"
+                />
+            </div>
         </div>
     </form>
     <ng-template pTemplate="footer">

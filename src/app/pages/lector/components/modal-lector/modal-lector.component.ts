@@ -70,40 +70,80 @@ export class ModalLectorComponent implements OnInit {
     }
 
     crear() {
-        this.lectorForm.controls['clave'].setValue(
-            this.lectorForm.controls['identificacion'].value
-        );
+        if (this.lectorForm.valid) {
+            this.lectorForm.controls['clave'].setValue(
+                this.lectorForm.controls['identificacion'].value
+            );
 
-        if (this.lector) {
-            //Editar
-            this.lectorService
-                .actualizarLector(
-                    this.lectorForm.value as Lector,
-                    this.lector.id
-                )
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.modalCerrar.emit(false);
-                    this.sharedService.modalAlert(
-                        'Actualizado exitosamente',
-                        'El lector fue actualizado correctamente',
-                        'success'
-                    );
-                });
-        } else {
-            //Crear
-            this.lectorForm.controls['estado'].setValue('A');
-            this.lectorService
-                .crearLector(this.lectorForm.value as Lector)
-                .subscribe((response: any) => {
-                    console.log(response);
-                    this.modalCerrar.emit(false);
-                    this.sharedService.modalAlert(
-                        'Creado exitosamente',
-                        'El lector fue creado correctamente',
-                        'success'
-                    );
-                });
+            if (this.lector) {
+                //Editar
+                this.lectorService
+                    .actualizarLector(
+                        this.lectorForm.value as Lector,
+                        this.lector.id
+                    )
+                    .subscribe((response: any) => {
+                        console.log(response);
+                        this.modalCerrar.emit(false);
+                        this.sharedService.modalAlert(
+                            'Actualizado exitosamente',
+                            'El lector fue actualizado correctamente',
+                            'success'
+                        );
+                    });
+            } else {
+                //Crear
+                this.lectorForm.controls['estado'].setValue('A');
+                this.getLectorByCorreo(
+                    this.lectorForm.controls['correo'].value
+                );
+            }
         }
+    }
+
+    getLectorByCorreo(correo: string) {
+        this.lectorService.getLectorByCorreo(correo).subscribe(
+            (response: Lector) => {
+                console.log('Lector existente', response);
+                this.modalCerrar.emit(false);
+                this.sharedService
+                    .modalAlertButtons(
+                        `El lector ${response.nombres} con correo ${response.correo} ya existe en el sistema, desea activarlo?`
+                    )
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            this.lectorService
+                                .actualizarEstadoLector(response.id, 'A')
+                                .subscribe((response: any) => {
+                                    console.log(response);
+                                    this.cerrar();
+                                    this.sharedService.modalAlert(
+                                        'Reactivado exitosamente',
+                                        'El libro fue reactivado correctamente',
+                                        'success'
+                                    );
+                                });
+                        }
+                    });
+            },
+            (error) => {
+                console.log(error);
+                this.crearLector();
+            }
+        );
+    }
+
+    crearLector() {
+        this.lectorService
+            .crearLector(this.lectorForm.value as Lector)
+            .subscribe((response: any) => {
+                console.log(response);
+                this.modalCerrar.emit(false);
+                this.sharedService.modalAlert(
+                    'Creado exitosamente',
+                    'El lector fue creado correctamente',
+                    'success'
+                );
+            });
     }
 }

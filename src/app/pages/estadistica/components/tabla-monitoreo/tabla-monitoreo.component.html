@@ -27,12 +27,30 @@
                 (click)="exportarExcel('libros')"
             ></i>
         </div>
-        <div class="flex flex-col flex-auto mt-8" style="padding: 5%">
+        <div
+            *ngIf="dataGraficoLibros"
+            class="flex flex-col flex-auto mt-8"
+            style="padding: 5%"
+        >
             <p-chart
+                *ngIf="dataLibros.length > 0"
                 type="pie"
                 [data]="dataGraficoLibros"
                 [style]="{ width: '100%' }"
             ></p-chart>
+
+            <div *ngIf="dataLibros.length == 0">
+                <div
+                    class="flex flex-col flex-auto items-center justify-center"
+                >
+                    <div
+                        class="text-lg font-medium tracking-tight leading-6 truncate m-auto"
+                        style="color: gray"
+                    >
+                        No hay datos...
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -52,10 +70,23 @@
         </div>
         <div class="flex flex-col flex-auto mt-8" style="padding: 5%">
             <p-chart
+                *ngIf="dataInstituciones.length > 0"
                 type="doughnut"
                 [data]="data"
                 [style]="{ width: '100%' }"
             ></p-chart>
+            <div *ngIf="dataInstituciones.length == 0">
+                <div
+                    class="flex flex-col flex-auto items-center justify-center"
+                >
+                    <div
+                        class="text-lg font-medium tracking-tight leading-6 truncate m-auto"
+                        style="color: gray"
+                    >
+                        No hay datos...
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -73,7 +104,7 @@
                 (click)="exportarExcel('lectores')"
             ></i>
         </div>
-        <!-- Tabla categorias -->
+        <!-- Tabla Lectores -->
         <div class="flex flex-col mt-2 divide-y">
             <ng-container *ngFor="let lector of dataLectores">
                 <div
@@ -97,13 +128,25 @@
                             </div>
                         </div>
                     </div>
-                    <button mat-icon-button matTooltip="Muy pronto">
+                    <!-- <button mat-icon-button matTooltip="Muy pronto">
                         <mat-icon
                             [svgIcon]="'heroicons_solid:chevron-right'"
                         ></mat-icon>
-                    </button>
+                    </button> -->
                 </div>
             </ng-container>
+            <div *ngIf="dataLectores.length == 0" class="p-5 mt-5">
+                <div
+                    class="flex flex-col flex-auto items-center justify-center"
+                >
+                    <div
+                        class="text-lg font-medium tracking-tight leading-6 truncate m-auto"
+                        style="color: gray"
+                    >
+                        No hay datos...
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -171,7 +214,6 @@
                 <th pSortableColumn="estado">
                     Estado <p-sortIcon field="estado"></p-sortIcon>
                 </th>
-                <!-- <th>Acciones</th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-prestamo>
@@ -184,14 +226,6 @@
                 <td>{{ prestamo.fechaCreacion | date: "dd/MM/yyyy" }}</td>
                 <td>{{ prestamo.tiempo }}</td>
                 <td>{{ prestamo.estado }}</td>
-                <!-- <td style="display: flex; justify-content: start">
-                    <button
-                        type="button"
-                        pButton
-                        icon="pi pi-pencil"
-                        class="p-button-text"
-                    ></button>
-                </td> -->
             </tr>
         </ng-template>
     </p-table>

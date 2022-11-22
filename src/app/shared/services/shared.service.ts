@@ -57,6 +57,14 @@ export class SharedService {
         });
     }
 
+    modalAlertButtons(title: string) {
+        return Swal.fire({
+            title: title,
+            showConfirmButton: true,
+            showCancelButton: true,
+        });
+    }
+
     excel() {}
 
     saveToFileSystem(data) {

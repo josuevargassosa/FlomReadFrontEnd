@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'app/shared/services/shared.service';
 import { Lector } from './model/lector.model';
 import { LectorService } from './service/lector.service';
 
@@ -12,12 +13,40 @@ export class LectorComponent implements OnInit {
     lectores: Lector[] = [];
     lector: Lector;
 
-    constructor(private lectorService: LectorService) {}
+    constructor(
+        private lectorService: LectorService,
+        private sharedService: SharedService
+    ) {}
 
     ngOnInit(): void {
         this.lectorService.getLectores().subscribe((response: any) => {
             this.lectores = response;
         });
+    }
+
+    eliminarLector(id: number) {
+        console.log(id);
+        this.sharedService
+            .modalAlertButtons('¿Esta seguro de eliminar el registro?')
+            .then((result) => {
+                if (result.isConfirmed) {
+                    this.lectorService
+                        .deleteLector(id)
+                        .subscribe((response: any) => {
+                            console.log(response);
+                            this.sharedService.modalAlert(
+                                'Libro eliminado correctamente',
+                                '',
+                                'success'
+                            );
+                            this.ngOnInit();
+                        });
+                    //Swal.fire('Saved!', '', 'success')
+                } else if (result.isDenied) {
+                    this.modalCerrar();
+                    //Swal.fire('Changes are not saved', '', 'info')
+                }
+            });
     }
 
     modalLector(lector?: Lector) {
