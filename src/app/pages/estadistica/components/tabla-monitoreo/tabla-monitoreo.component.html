@@ -28,7 +28,7 @@
             ></i>
         </div>
         <div
-            *ngIf="dataGraficoLibros"
+            *ngIf="dataGraficoLibros && dataLibros"
             class="flex flex-col flex-auto mt-8"
             style="padding: 5%"
         >
@@ -68,7 +68,11 @@
                 (click)="exportarExcel('instituciones')"
             ></i>
         </div>
-        <div class="flex flex-col flex-auto mt-8" style="padding: 5%">
+        <div
+            *ngIf="dataInstituciones"
+            class="flex flex-col flex-auto mt-8"
+            style="padding: 5%"
+        >
             <p-chart
                 *ngIf="dataInstituciones.length > 0"
                 type="doughnut"
@@ -135,15 +139,17 @@
                     </button> -->
                 </div>
             </ng-container>
-            <div *ngIf="dataLectores.length == 0" class="p-5 mt-5">
-                <div
-                    class="flex flex-col flex-auto items-center justify-center"
-                >
+            <div *ngIf="dataLectores">
+                <div *ngIf="dataLectores.length == 0" class="p-5 mt-5">
                     <div
-                        class="text-lg font-medium tracking-tight leading-6 truncate m-auto"
-                        style="color: gray"
+                        class="flex flex-col flex-auto items-center justify-center"
                     >
-                        No hay datos...
+                        <div
+                            class="text-lg font-medium tracking-tight leading-6 truncate m-auto"
+                            style="color: gray"
+                        >
+                            No hay datos...
+                        </div>
                     </div>
                 </div>
             </div>
