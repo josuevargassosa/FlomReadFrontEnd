@@ -122,27 +122,32 @@ export class ModalLibroComponent implements OnInit {
     getLibroByCodigo(codigo: string) {
         this.libroService.getLibroByCodigo(codigo).subscribe(
             (response: Libro) => {
-                console.log('Libro existente', response);
-                this.modalCerrar.emit(false);
-                this.sharedService
-                    .modalAlertButtons(
-                        `El libro ${response.nombre} con codigo ${response.codigo} ya existe en el sistema, desea activarlo?`
-                    )
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            this.libroService
-                                .updateStateLibro(response.id, 'A')
-                                .subscribe((response: Libro) => {
-                                    console.log(response);
-                                    this.cerrar();
-                                    this.sharedService.modalAlert(
-                                        'Reactivado exitosamente',
-                                        'El libro fue reactivado correctamente',
-                                        'success'
-                                    );
-                                });
-                        }
-                    });
+                if (response) {
+                    console.log('Libro existente', response);
+                    this.modalCerrar.emit(false);
+                    this.sharedService
+                        .modalAlertButtons(
+                            `El libro ${response.nombre} con codigo ${response.codigo} ya existe en el sistema, desea activarlo?`
+                        )
+                        .then((result) => {
+                            if (result.isConfirmed) {
+                                this.libroService
+                                    .updateStateLibro(response.id, 'A')
+                                    .subscribe((response: Libro) => {
+                                        console.log(response);
+                                        this.cerrar();
+                                        this.sharedService.modalAlert(
+                                            'Reactivado exitosamente',
+                                            'El libro fue reactivado correctamente',
+                                            'success'
+                                        );
+                                    });
+                            }
+                        });
+                } else {
+                    console.log('Libro no existente');
+                    this.uploadPhoto();
+                }
             },
             (error) => {
                 console.log(error);

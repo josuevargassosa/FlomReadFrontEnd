@@ -169,13 +169,14 @@
 </div>
 <div class="table-responsive mb-10">
     <p-table
-        #dt1
+        #dt2
         dataKey="id"
         responsiveLayout="scroll"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
         [globalFilterFields]="[
-            'nombres',
-            'nombre',
+            'lector.nombres',
+            'lector.apellidos',
+            'libro.nombre',
             'fechaCreacion',
             'tiempo',
             'estado'
@@ -195,20 +196,22 @@
                         pInputText
                         type="text"
                         (input)="
-                            dt1.filterGlobal($event.target.value, 'contains')
+                            dt2.filterGlobal($event.target.value, 'contains')
                         "
                         placeholder="Buscar..."
+                        (ngModelChange)="somethingChanged($event.target.value)"
                     />
                 </span>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="nombres">
-                    Lector <p-sortIcon field="nombres"></p-sortIcon>
+                <th [pSortableColumn]="'lector.nombres'">
+                    Lector
+                    <p-sortIcon [field]="'lector.nombres'"></p-sortIcon>
                 </th>
-                <th pSortableColumn="nombre">
-                    Libro <p-sortIcon field="nombre"></p-sortIcon>
+                <th pSortableColumn="libro.nombre">
+                    Libro <p-sortIcon field="libro.nombre"></p-sortIcon>
                 </th>
                 <th pSortableColumn="fechaCreacion">
                     Fecha prestamo

@@ -82,7 +82,7 @@ export class TablaMonitoreoComponent implements OnInit {
         switch (typeData) {
             case 'libros':
                 let dataLibros = [];
-                this.dataLectores.forEach((element: any) => {
+                this.dataLibros.forEach((element: any) => {
                     dataLibros.push({
                         Nombre: element.Nombre,
                         Leidos: element.Cantidad,
@@ -213,5 +213,9 @@ export class TablaMonitoreoComponent implements OnInit {
                 // };
                 console.log('Instituciones GRAFICO', this.data);
             });
+    }
+
+    somethingChanged(event) {
+        console.log('something changed', event);
     }
 }

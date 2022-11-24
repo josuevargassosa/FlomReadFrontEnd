@@ -104,27 +104,30 @@ export class ModalLectorComponent implements OnInit {
     getLectorByCorreo(correo: string) {
         this.lectorService.getLectorByCorreo(correo).subscribe(
             (response: Lector) => {
-                console.log('Lector existente', response);
-                this.modalCerrar.emit(false);
-                this.sharedService
-                    .modalAlertButtons(
-                        `El lector ${response.nombres} con correo ${response.correo} ya existe en el sistema, desea activarlo?`
-                    )
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            this.lectorService
-                                .actualizarEstadoLector(response.id, 'A')
-                                .subscribe((response: any) => {
-                                    console.log(response);
-                                    this.cerrar();
-                                    this.sharedService.modalAlert(
-                                        'Reactivado exitosamente',
-                                        'El libro fue reactivado correctamente',
-                                        'success'
-                                    );
-                                });
-                        }
-                    });
+                if (response) {
+                    this.modalCerrar.emit(false);
+                    this.sharedService
+                        .modalAlertButtons(
+                            `El lector ${response.nombres} con correo ${response.correo} ya existe en el sistema, desea activarlo?`
+                        )
+                        .then((result) => {
+                            if (result.isConfirmed) {
+                                this.lectorService
+                                    .actualizarEstadoLector(response.id, 'A')
+                                    .subscribe((response: any) => {
+                                        console.log(response);
+                                        this.cerrar();
+                                        this.sharedService.modalAlert(
+                                            'Reactivado exitosamente',
+                                            'El libro fue reactivado correctamente',
+                                            'success'
+                                        );
+                                    });
+                            }
+                        });
+                } else {
+                    this.crearLector();
+                }
             },
             (error) => {
                 console.log(error);
