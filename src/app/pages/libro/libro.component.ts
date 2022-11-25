@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LibroLector } from 'app/shared/model/shared';
 import { SharedService } from 'app/shared/services/shared.service';
 import { Libro } from './model/libro.model';
 import { LibroService } from './service/libro.service';
@@ -12,7 +13,8 @@ export class LibroComponent implements OnInit {
     modalShowLibro: boolean = false;
     libros: Libro[] = [];
     libro: Libro;
-
+    prestamos: LibroLector[] = [];
+    
     constructor(
         private libroService: LibroService,
         private sharedService: SharedService
@@ -23,6 +25,7 @@ export class LibroComponent implements OnInit {
             this.libros = response;
             console.log(this.libros);
         });
+        this.getPrestamos();
     }
 
     modalLibro(lector?) {
@@ -35,14 +38,25 @@ export class LibroComponent implements OnInit {
         this.ngOnInit();
     }
 
-    eliminarLibro(id: number) {
-        console.log(id);
-        this.sharedService
-            .modalAlertButtons('¿Esta seguro de eliminar el registro?')
-            .then((result) => {
-                if (result.isConfirmed) {
-                    this.libroService
-                        .deleteLibro(id)
+    getPrestamos() {
+        this.sharedService.getPrestamos().subscribe((response: any) => {
+            this.prestamos = response;
+        })
+    }
+
+    validarPrestamos(idLibro: number) {
+        let prestamos = this.prestamos.filter((m) => m.libro.id == idLibro);
+        console.log('PRESTAMOSSS',prestamos);
+        if (prestamos.length > 0) {
+            this.sharedService.modalAlert(
+                'No se puede eliminar el libro porque tiene prestamos asociados',
+                '',
+                'warning'
+            );
+            return false;
+        } else {
+            this.libroService
+                        .deleteLibro(idLibro)
                         .subscribe((response: any) => {
                             console.log(response);
                             this.sharedService.modalAlert(
@@ -52,6 +66,18 @@ export class LibroComponent implements OnInit {
                             );
                             this.ngOnInit();
                         });
+            return true;
+        }
+    }
+
+    eliminarLibro(id: number) {
+        console.log(id);
+        this.sharedService
+            .modalAlertButtons('¿Esta seguro de eliminar el registro?')
+            .then((result) => {
+                if (result.isConfirmed) {
+                    this.validarPrestamos(id);
+                    
                     //Swal.fire('Saved!', '', 'success')
                 } else if (result.isDenied) {
                     this.modalCerrar();
